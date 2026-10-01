@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: makhills-attendance
+    runtime: python
+    plan: starter
+    region: frankfurt
+    buildCommand: pip install -r requirements.txt
+    startCommand: python backend/server.py
+    healthCheckPath: /api/v1/health
+    disk:
+      name: makhills-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: MAKHILLS_ENV
+        value: production
+      - key: MAKHILLS_API_TOKEN
+        generateValue: true
+      - key: MAKHILLS_DB_PATH
+        value: /var/data/makhills.sqlite3
+      - key: MAKHILLS_CORS_ORIGINS
+        sync: false

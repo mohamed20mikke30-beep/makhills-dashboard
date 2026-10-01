@@ -1,0 +1,8 @@
+.venv/
+.zkteco-bridge-state.json
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+backend/data/*.sqlite3

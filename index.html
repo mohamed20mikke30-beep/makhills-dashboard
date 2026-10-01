@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f6f3">
+  <script>if(location.protocol==="file:")location.replace("http://127.0.0.1:8000");</script>
+  <title>Mak Hills | إدارة الموظفين</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:light;--ink:#14233f;--muted:#6b7589;--line:#e0e5ed;--paper:#fff;--canvas:#f3f5f9;--navy:#0D1C30;--navy-deep:#081423;--gold:#c69b4b;--gold-soft:#f6efdF;--green:#28724f;--green-soft:#e8f3ec;--orange:#b77724;--orange-soft:#fbf1df;--red:#ae4d4d;--red-soft:#faeaea;font-family:"IBM Plex Sans Arabic",Tahoma,sans-serif;font-synthesis:none;text-rendering:optimizeLegibility}
+    *{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);min-width:320px}button,input,select{font:inherit}button{cursor:pointer}
+    .app{min-height:100vh;display:grid;grid-template-columns:246px minmax(0,1fr);transition:grid-template-columns .2s ease}.sidebar{background:var(--navy);color:#edf2f9;padding:18px 14px;display:flex;flex-direction:column}.sidebar-brand{padding:20px 15px;text-align:center;background-color:#0f1f38}.sidebar-brand img{width:100%;max-width:160px!important;height:auto!important;object-fit:contain!important;display:block;margin:0 auto}.sidebar-toggle{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:34px;margin:0 0 20px;border:1px solid #314567;border-radius:5px;background:transparent;color:#d0d9e8;font-size:11px}.sidebar-toggle:hover{background:#172d4c}.sidebar-toggle svg{width:16px;height:16px;flex:none}.nav-label{color:#aebbd0;font-size:11px;padding:0 12px 9px}.nav-list{display:grid;gap:5px}.nav-item{border:0;background:transparent;color:#d0d9e8;border-radius:7px;padding:11px 12px;display:flex;align-items:center;gap:11px;text-align:right;font-size:13px}.nav-item svg{width:17px;height:17px;flex:none}.nav-item.active{color:#fff;background:#1d3b68;box-shadow:inset -3px 0 var(--gold)}.sidebar-foot{margin-top:auto;padding:16px 10px 0;border-top:1px solid #314567;color:#bdc7d8;font-size:11px;line-height:1.8}.sidebar-collapsed{grid-template-columns:76px minmax(0,1fr)}.sidebar-collapsed .sidebar{padding:16px 8px}.sidebar-collapsed .sidebar-brand{padding:10px 0 14px}.sidebar-collapsed .sidebar-toggle span,.sidebar-collapsed .nav-label,.sidebar-collapsed .nav-item span,.sidebar-collapsed .sidebar-foot{display:none}.sidebar-collapsed .sidebar-toggle{width:40px;min-height:36px;margin:0 auto 18px}.sidebar-collapsed .sidebar-toggle svg{transform:rotate(180deg)}.sidebar-collapsed .nav-item{justify-content:center;padding:11px 5px}
+    .main{min-width:0}.topbar{min-height:70px;padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--paper);border-bottom:1px solid var(--line)}.header-brand{display:flex;align-items:center;gap:12px;min-width:0}.crumb,.today{color:var(--muted);font-size:12px}.top-actions{display:flex;align-items:center;gap:16px}.user-chip{display:flex;align-items:center;gap:9px;border-right:1px solid var(--line);padding-right:16px}.avatar{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:#f0dfcb;color:#784d2b;font-size:12px;font-weight:700}.user-name{font-size:12px;font-weight:600}.user-role{font-size:10px;color:var(--muted)}
+    .content{max-width:1440px;padding:29px 34px 42px;margin:auto}.heading{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:23px}.eyebrow{color:#94702f;font-size:11px;font-weight:600;margin:0 0 5px}h1{font-size:25px;line-height:1.4;margin:0;font-weight:700}.subtitle{color:var(--muted);font-size:12px;margin:4px 0 0}.primary{display:inline-flex;justify-content:center;align-items:center;gap:8px;min-height:40px;padding:0 15px;border:0;border-radius:6px;background:var(--gold);color:var(--navy-deep);font-weight:700;font-size:12px;transition:background .18s,transform .18s}.primary:hover{background:#b78a39;transform:translateY(-1px)}.primary svg{width:16px;height:16px}
+    .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:22px}.metric{min-height:112px;padding:17px 16px;background:var(--paper);border:1px solid var(--line);border-radius:7px;position:relative;overflow:hidden;box-shadow:0 2px 8px #10234708}.metric:after{content:"";width:4px;position:absolute;inset:0 0 0 auto;background:var(--accent,var(--gold))}.metric:nth-child(2){--accent:#3b7b5a}.metric:nth-child(3){--accent:#ba4e4e}.metric:nth-child(4){--accent:#8b6cb3}.metric-label{color:var(--muted);font-size:11px}.metric-value{display:block;font-size:24px;line-height:1.3;font-weight:700;margin-top:7px;color:var(--navy)}.metric-note{color:var(--muted);font-size:10px;margin-top:3px}
+    .directory{background:var(--paper);border:1px solid var(--line);border-radius:7px}.directory-head{padding:18px 20px 15px;display:flex;justify-content:space-between;align-items:center;gap:14px;border-bottom:1px solid var(--line)}.directory-title{margin:0;font-size:15px}.count{color:var(--muted);font-size:11px;margin-top:3px}.filters{display:flex;gap:8px}.search-wrap{position:relative}.search-wrap svg{position:absolute;right:11px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:#86918c;pointer-events:none}.search,.filter{min-height:36px;border:1px solid var(--line);border-radius:5px;background:#fff;color:var(--ink);font-size:11px;outline:none}.search{width:205px;padding:0 34px 0 10px}.filter{padding:0 10px;min-width:115px}.search:focus,.filter:focus,.control:focus{border-color:#6c9b88;box-shadow:0 0 0 3px #e8f3ed}.table-scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;text-align:right;min-width:750px}th{background:#fafbf9;color:#7b8782;font-size:10px;font-weight:500;padding:11px 18px;white-space:nowrap}td{padding:12px 18px;border-top:1px solid #edf0ed;font-size:11px;white-space:nowrap}tbody tr:hover{background:#fcfdfb}.employee{display:flex;align-items:center;gap:10px}.employee-avatar{width:34px;height:34px;display:grid;place-items:center;flex:none;border-radius:50%;background:var(--avatar-bg,#e7efe9);color:var(--avatar-ink,#35654f);font-size:10px;font-weight:700}.employee-name{font-size:11px;font-weight:600}.employee-email{color:var(--muted);font-size:10px;margin-top:2px;direction:ltr;text-align:right}.role-text,.muted-text{color:var(--muted)}.status{display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:4px 8px;font-size:10px}.status:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}.status-active{color:var(--green);background:var(--green-soft)}.status-leave{color:var(--orange);background:var(--orange-soft)}.status-inactive{color:var(--red);background:var(--red-soft)}.actions{display:flex;align-items:center;gap:4px}.icon-btn{display:grid;place-items:center;width:29px;height:29px;border:0;border-radius:5px;background:transparent;color:#738079}.icon-btn:hover{background:#edf3ef;color:var(--green)}.icon-btn.delete:hover{background:var(--red-soft);color:var(--red)}.icon-btn svg{width:15px;height:15px}.empty{display:none;text-align:center;color:var(--muted);padding:34px 12px;font-size:12px}.footer{padding:12px 19px;color:var(--muted);border-top:1px solid var(--line);font-size:10px}
+    .backdrop{position:fixed;inset:0;z-index:10;display:none;place-items:center;padding:16px;background:#10251fc2}.backdrop.open{display:grid;animation:fade .16s ease-out}.modal{width:min(100%,480px);background:#fff;border-radius:8px;box-shadow:0 20px 60px #10251f38;animation:rise .18s ease-out}.modal-head{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}.modal-head h2{margin:0;font-size:16px}.close{border:0;background:transparent;color:var(--muted);font-size:22px;width:30px;height:30px}.form{padding:19px 20px 20px;display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:11px;font-weight:600}.control{min-height:39px;border:1px solid var(--line);border-radius:5px;padding:0 10px;background:#fff;color:var(--ink);font-size:12px;outline:none}.form-actions{grid-column:1/-1;display:flex;gap:8px;padding-top:5px}.secondary{min-height:39px;padding:0 15px;border:1px solid var(--line);border-radius:5px;background:#fff;color:var(--ink);font-size:12px}.secondary:hover{background:var(--canvas)}@keyframes fade{from{opacity:0}to{opacity:1}}@keyframes rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:1000px){.app{grid-template-columns:205px minmax(0,1fr)}.content{padding-inline:23px}.topbar{padding-inline:23px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:700px){.app{display:block}.sidebar{padding:8px 10px;flex-direction:row;align-items:center;justify-content:flex-start;gap:10px}.sidebar-brand{display:none}.sidebar-toggle{width:38px;min-height:34px;margin:0;flex:none}.sidebar-toggle span,.sidebar-foot,.nav-label{display:none}.sidebar .nav-list{display:flex;overflow-x:auto;gap:4px;min-width:0}.nav-item{width:auto;white-space:nowrap;padding:8px 9px;font-size:11px}.nav-item svg{width:15px;height:15px}.sidebar-collapsed{display:block}.sidebar-collapsed .sidebar{padding:8px 10px}.sidebar-collapsed .nav-item span{display:inline}.sidebar-collapsed .sidebar-toggle svg{transform:none}.topbar{min-height:58px;padding:5px 10px;gap:8px}.header-brand{gap:6px}.crumb{font-size:10px}.user-role,.today{display:none}.user-chip{border:0;padding:0}.api-actions{gap:5px}.content{padding:20px 12px 32px}.heading{align-items:flex-start;flex-direction:column;gap:13px}h1{font-size:22px}.metrics{gap:9px}.metric{min-height:98px;padding:13px}.metric-value{font-size:21px}.directory-head{align-items:flex-start;flex-direction:column;padding:15px}.filters{width:100%}.search-wrap{flex:1;min-width:0}.search{width:100%}.filter{min-width:108px}.form{grid-template-columns:1fr}.field.full,.form-actions{grid-column:auto}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+    .print-header{display:none}.export-actions{display:flex;gap:8px;align-items:center}
+    @media print{
+      @page{size:A4 landscape;margin:12mm}
+      html,body{background:#fff!important;color:#14233f!important;min-width:0!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .sidebar,.topbar,.view-panel:not(#payrollView),#employeesView,#attendanceView,.payroll-controls,.adjustment-form,#payrollNotice{display:none!important}
+      .app{display:block!important;min-height:0!important}.main,.content{display:block!important;max-width:none!important;padding:0!important;margin:0!important}
+      #payrollView{display:block!important}.view-heading{display:none!important}.print-header{display:flex;align-items:center;gap:14px;border-bottom:3px solid #c69b4b;padding-bottom:12px;margin-bottom:16px}.print-brand{font-size:14px;font-weight:700;color:#102347}.print-subtitle{font-size:9px;color:#53617a}.print-period{margin-inline-start:auto;text-align:left;font-size:13px;font-weight:700;color:#102347}
+      .report-summary{grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 14px}.report-total{border:1px solid #d8dfeb!important;background:#f4f6fa!important;padding:8px 10px!important}.report-total strong{font-size:12px!important;color:#102347!important}
+      .directory,.table-scroll{overflow:visible!important;border:0!important;box-shadow:none!important}.report-table{width:100%!important;min-width:0!important;font-size:8pt!important}.report-table th{background:#102347!important;color:#fff!important;font-size:8pt!important;padding:7px 5px!important}.report-table td{font-size:8pt!important;padding:6px 5px!important;border-color:#d8dfeb!important;white-space:normal!important}.report-table tbody tr:nth-child(even){background:#f4f6fa!important}.report-table td strong{color:#102347!important}.status-draft,.status-approved{border:1px solid #c69b4b!important;background:#f6efdf!important;color:#102347!important}
+      body.printing-policy .sidebar,body.printing-policy .topbar,body.printing-policy #payrollView{display:none!important}
+      body.printing-policy #policyView{display:block!important;padding:0!important}
+      body.printing-policy .policy-print-head{display:flex!important;align-items:center;gap:18px;border-bottom:3px solid #c69b4b;padding-bottom:12px;margin-bottom:18px}
+      body.printing-policy .policy-print-head .brand-wordmark{min-width:145px;min-height:130px}
+      body.printing-policy .policy-print-title{font-size:22px;font-weight:700;color:#0D1C30}
+      body.printing-policy .view-heading button,body.printing-policy .notice{display:none!important}
+      body.printing-policy .policy-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+      body.printing-policy .policy-card{break-inside:avoid;border-color:#d8dfeb!important;background:#fff!important;padding:16px!important}
+      body.printing-policy .policy-card:before{background:#c69b4b!important}
+    }
+    .view-panel{display:none}.view-panel.active{display:block}.nav-item{width:100%}.api-actions{display:flex;align-items:center;gap:10px}.api-status{font-size:10px;color:var(--muted)}.api-status.online{color:var(--green)}.small-btn{min-height:32px;padding:0 10px;border:1px solid var(--line);border-radius:5px;background:#fff;color:var(--ink);font-size:11px}.small-btn:hover{background:var(--canvas)}.view-heading{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:5px 0 18px}.view-heading h1{font-size:22px}.view-heading p{font-size:11px;color:var(--muted);margin:4px 0 0}.filter-row{display:flex;align-items:end;gap:9px;flex-wrap:wrap;margin:15px 0}.field-inline{display:grid;gap:5px}.field-inline label{font-size:10px;color:var(--muted)}.field-inline input,.field-inline select{min-height:35px;border:1px solid var(--line);border-radius:5px;padding:0 9px;background:#fff;font:inherit;font-size:11px;color:var(--ink)}.report-table{min-width:900px}.report-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}.report-total{padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:6px}.report-total span{font-size:10px;color:var(--muted)}.report-total strong{display:block;font-size:16px;margin-top:5px}.notice{margin:12px 0;padding:10px 12px;background:#fbf6ee;border-right:3px solid #d99a4d;color:#715637;font-size:11px;line-height:1.7}.error-notice{background:#faeaea;border-color:#ae4d4d;color:#8b3636}.status-draft,.status-approved{display:inline-flex;padding:4px 8px;border-radius:12px;font-size:10px}.status-draft{background:#fbefe5;color:#9c5b2e}.status-approved{background:#e8f3ed;color:#176b56}.empty-cell{text-align:center;color:var(--muted);padding:24px}.wide-modal{width:min(100%,560px)}.manual-form{max-height:80vh;overflow-y:auto}.policy-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:18px}.policy-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:7px;padding:18px 19px;overflow:hidden}.policy-card:before{content:"";position:absolute;inset:0 0 0 auto;width:4px;background:var(--gold)}.policy-card h2{font-size:14px;margin:0 0 8px;color:var(--navy)}.policy-card p{font-size:12px;line-height:1.8;color:var(--muted);margin:0}.policy-number{font-size:24px;font-weight:700;color:var(--gold);margin-bottom:5px}.policy-print-head{display:none}
+  </style>
+  <style>
+    .brand-wordmark{display:grid;justify-items:center;align-content:center;color:#edf2f9;font-family:"Cormorant Garamond",Georgia,serif;line-height:.95;text-align:center}
+    .brand-wordmark-main{font-size:25px;font-weight:700}
+    .brand-wordmark-group{font-size:16px;font-weight:600;color:var(--gold)}
+    .sidebar-collapsed .brand-wordmark-main{font-size:16px}
+    .sidebar-collapsed .brand-wordmark-group{font-size:11px}
+    .policy-print-head .brand-wordmark{color:var(--navy);min-width:145px}
+    .attendance-filters{flex-wrap:wrap;align-items:flex-end}
+    .daily-dashboard{margin:14px 0 20px}
+    .text-action{padding:0;border:0;background:transparent;color:var(--green);font:inherit;font-size:10px;text-decoration:underline;cursor:pointer}
+    .attendance-state{display:inline-flex;align-items:center;padding:3px 7px;border-radius:4px;background:#f0f2f4;color:var(--ink);font-size:10px;white-space:nowrap}
+    .attendance-state.present{background:#e8f3ed;color:#176b56}
+    .attendance-state.absence{background:#faeaea;color:#8b3636}
+    .attendance-state.leave{background:#e7eff8;color:#315c82}
+    .attendance-state.paid-leave{background:#e7eff8;color:#315c82}
+    .attendance-state.late{background:#fff0dc;color:#8a4d09;box-shadow:inset 0 0 0 1px #e8bc7b}
+    .attendance-row-late{background:#fffaf2}
+    .attendance-row-special{box-shadow:inset -3px 0 #3d7792}
+    .attendance-alerts{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+    .attendance-alert{display:inline-flex;align-items:center;padding:2px 6px;border-radius:3px;font-size:9px;line-height:1.5;white-space:nowrap}
+    .late-alert{background:#fff0dc;color:#8a4d09}
+    .special-shift-alert{background:#e8f1f5;color:#285d72}
+    .allowance-admin-note{grid-column:1/-1;margin:0;padding:8px 10px;border-right:3px solid var(--green);background:var(--green-soft);color:var(--green);font-size:11px;line-height:1.7}
+    .monthly-absence-printhead{display:none}
+    .monthly-absence-table{min-width:900px}
+    .attendance-time-table{width:100%;min-width:1120px;table-layout:fixed}
+    .attendance-time-table th:nth-child(1),.attendance-time-table td:nth-child(1){width:16%}
+    .attendance-time-table th:nth-child(2),.attendance-time-table td:nth-child(2){width:12%}
+    .attendance-time-table th:nth-child(3),.attendance-time-table td:nth-child(3){width:13%}
+    .attendance-time-table th:nth-child(4),.attendance-time-table td:nth-child(4){width:10%}
+    .attendance-time-table th:nth-child(5),.attendance-time-table td:nth-child(5){width:11%}
+    .attendance-time-table th:nth-child(6),.attendance-time-table td:nth-child(6){width:23%}
+    .attendance-time-table th:nth-child(7),.attendance-time-table td:nth-child(7){width:15%}
+    .attendance-time-table .time-value{direction:ltr;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+    .dashboard-time-table{width:100%;min-width:1240px;table-layout:fixed}
+    .dashboard-time-table th:nth-child(1),.dashboard-time-table td:nth-child(1){width:14%}
+    .dashboard-time-table th:nth-child(2),.dashboard-time-table td:nth-child(2){width:11%}
+    .dashboard-time-table th:nth-child(3),.dashboard-time-table td:nth-child(3){width:10%}
+    .dashboard-time-table th:nth-child(4),.dashboard-time-table td:nth-child(4){width:10%}
+    .dashboard-time-table th:nth-child(5),.dashboard-time-table td:nth-child(5){width:10%}
+    .dashboard-time-table th:nth-child(6),.dashboard-time-table td:nth-child(6){width:12%}
+    .dashboard-time-table th:nth-child(7),.dashboard-time-table td:nth-child(7){width:21%}
+    .dashboard-time-table th:nth-child(8),.dashboard-time-table td:nth-child(8){width:12%}
+    .dashboard-time-table td:nth-child(3),.dashboard-time-table td:nth-child(4){direction:ltr;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+    .attendance-actions{display:flex;flex-wrap:wrap;gap:5px;align-items:center;min-width:120px}
+    .attendance-actions .small-btn{min-height:28px;padding-inline:8px}
+    .attendance-tablist{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:12px 0}
+    .attendance-tab{min-height:36px;padding:0 14px;border:0;border-bottom:2px solid transparent;background:transparent;color:var(--muted);font:inherit;font-size:12px;cursor:pointer}
+    .attendance-tab.active{border-bottom-color:var(--green);color:var(--ink);font-weight:700}
+    .attendance-panel[hidden]{display:none}
+    .employee-name-button{padding:0;border:0;background:transparent;color:var(--ink);font:inherit;font-weight:600;text-align:right;cursor:pointer}
+    .employee-name-button:hover{color:var(--green);text-decoration:underline}
+    #employeesView .employee-table-container{width:100%;overflow-x:auto}
+    #employeesView .table.employee-table{width:100%;min-width:1200px;table-layout:fixed;font-size:13px}
+    #employeesView .table.employee-table th,#employeesView .table.employee-table td{padding:8px;text-align:right;vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    #employeesView .table.employee-table th:nth-child(1),#employeesView .table.employee-table td:nth-child(1){width:11%}
+    #employeesView .table.employee-table th:nth-child(2),#employeesView .table.employee-table td:nth-child(2){width:16%}
+    #employeesView .table.employee-table th:nth-child(3),#employeesView .table.employee-table td:nth-child(3){width:9%}
+    #employeesView .table.employee-table th:nth-child(4),#employeesView .table.employee-table td:nth-child(4){width:7%}
+    #employeesView .table.employee-table th:nth-child(5),#employeesView .table.employee-table td:nth-child(5),#employeesView .table.employee-table th:nth-child(6),#employeesView .table.employee-table td:nth-child(6){width:7%}
+    #employeesView .table.employee-table th:nth-child(7),#employeesView .table.employee-table td:nth-child(7),#employeesView .table.employee-table th:nth-child(8),#employeesView .table.employee-table td:nth-child(8){width:7%}
+    #employeesView .table.employee-table th:nth-child(9),#employeesView .table.employee-table td:nth-child(9){width:8%}
+    #employeesView .table.employee-table th:nth-child(10),#employeesView .table.employee-table td:nth-child(10){width:6%}
+    #employeesView .table.employee-table th:nth-child(11),#employeesView .table.employee-table td:nth-child(11){width:6%}
+    #employeesView .table.employee-table th:nth-child(12),#employeesView .table.employee-table td:nth-child(12){width:9%}
+    #employeesView .table.employee-table td:nth-child(5),#employeesView .table.employee-table td:nth-child(6){font-size:12px}
+    .employee-summary{width:min(100%,860px);max-height:calc(100dvh - 32px);overflow-y:auto}
+    .backdrop>.modal:not(.employee-summary){max-height:calc(100dvh - 32px);display:flex;flex-direction:column}
+    .backdrop>.modal:not(.employee-summary)>.form{min-height:0;overflow-y:auto}
+    .api-actions{display:flex;align-items:center;gap:8px;white-space:nowrap}
+    .api-status{font-size:10px;color:var(--muted)}
+    .api-status.online{color:var(--green)}
+    .api-status.offline{color:var(--red)}
+    .holiday-form{padding:14px 18px}
+    .holiday-form input{min-height:35px;border:1px solid var(--line);border-radius:5px;padding:0 9px;background:#fff;color:var(--ink);font:inherit;font-size:11px}
+    .summary-period{margin:0;color:var(--muted);font-size:12px}
+    .summary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:16px 20px}
+    .summary-stat{padding:12px;border:1px solid var(--line);border-radius:6px;background:#fbfcfd}
+    .summary-stat span{display:block;color:var(--muted);font-size:10px}
+    .summary-stat strong{display:block;margin-top:5px;font-size:19px;color:var(--navy)}
+    .summary-breakdown{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;padding:0 20px 18px;font-size:12px}
+    .summary-breakdown div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:7px 0}
+    .summary-breakdown span{color:var(--muted)}
+    .salary-derived{background:#f3f6f5;color:var(--muted)}
+    .permission-options{grid-column:1/-1;display:contents}
+    .permission-paid{display:flex;align-items:center;gap:8px;font-size:11px}
+    .permission-paid input{width:16px;height:16px;accent-color:var(--green)}
+    .summary-details{display:grid;gap:16px;padding:0 20px 20px}
+    .summary-details>section{min-width:0;border-top:1px solid var(--line);padding-top:13px}
+    .ranking-formula{margin:0 0 10px;color:var(--muted);font-size:11px;overflow-wrap:anywhere}
+    .ranking-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px;font-size:11px}
+    .ranking-detail-grid>div{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border-bottom:1px solid var(--line);padding:8px 0}
+    .ranking-detail-grid span{color:var(--muted)}
+    .ranking-detail-grid strong{text-align:end;font-weight:600}
+    .ranking-tie-breakers{margin:10px 0 0;padding-inline-start:22px;color:var(--muted);font-size:11px}
+    .summary-section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+    .summary-section-head h3{margin:0;font-size:12px}
+    .summary-section-head span,.allowance-meter span{color:var(--muted);font-size:11px}
+    .allowance-meter{display:flex;justify-content:space-between;gap:10px;margin:8px 0}
+    .allowance-meter strong{font-size:13px;color:var(--navy)}
+    .summary-details progress{display:block;width:100%;height:8px;margin:8px 0 12px;accent-color:var(--green)}
+    .summary-table{min-width:500px}
+    .summary-table th,.summary-table td{padding:8px 10px;font-size:10px}
+    .deduction-reasons{margin:5px 0 0;padding-inline-start:16px;color:var(--muted);font-size:10px;line-height:1.7;white-space:normal;min-width:180px}
+    .login-modal{width:min(100%,400px)}
+    .api-auth-backdrop{z-index:30}
+    .login-error{grid-column:1/-1;margin:0;color:var(--red);font-size:11px}
+    @media(max-width:700px){
+      .topbar{flex-wrap:wrap;min-height:54px;padding:8px 12px}
+      .top-actions{min-width:0;gap:8px}
+      .content{padding:16px 10px 28px}
+      .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .attendance-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+      .attendance-filters .field-inline{min-width:0;width:100%}
+      .attendance-filters input,.attendance-filters select{width:100%;min-width:0}
+      .attendance-filters #refreshAttendanceBtn{grid-column:1/-1}
+      .payroll-controls .field-inline{flex:1 1 100%}
+      .payroll-controls input{width:100%}
+      .report-summary{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+      .report-total{min-width:0;padding:9px}
+      .report-total strong{font-size:13px}
+      .employee-summary,.wide-modal,.modal{width:min(100%,560px);max-height:calc(100dvh - 20px);overflow-y:auto}
+      .summary-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding:12px}
+      .summary-details{padding:0 12px 14px}
+      .ranking-detail-grid{grid-template-columns:1fr}
+      .summary-breakdown{grid-template-columns:1fr;padding:0 12px 14px}
+    }
+    @media(max-width:380px){
+      .user-name{max-width:95px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+      .nav-item{padding-inline:7px;font-size:10px}
+      .attendance-filters{grid-template-columns:1fr}
+      .attendance-filters #refreshAttendanceBtn{grid-column:auto}
+      .summary-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:600px){.summary-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding:12px}.summary-breakdown{grid-template-columns:1fr;padding:0 12px 14px}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" aria-label="القائمة الرئيسية">
+      <div class="sidebar-brand" aria-label="Mak Hills Group"><div class="brand-wordmark"><span class="brand-wordmark-main">Mak Hills</span><span class="brand-wordmark-group">Group</span></div></div>
+      <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="طي القائمة" aria-expanded="true" title="طي القائمة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m14 5-7 7 7 7M7 12h14"/></svg><span>طي القائمة</span></button>
+      <div class="nav-label">القائمة</div>
+      <nav class="nav-list">
+        <button class="nav-item active" type="button" data-view="employees" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.5-3.7 2.7-5.5 6.5-5.5s6 1.8 6.5 5.5M16 5.2a3.5 3.5 0 0 1 0 6.6M17 14.8c2.6.6 4 2.3 4.5 5.2"/></svg><span>الموظفون</span></button>
+        <button class="nav-item" type="button" data-view="attendance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-13 5 2 2 4-4"/></svg><span>الحضور والانصراف</span></button>
+        <button class="nav-item" type="button" data-view="policy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 3h9l4 4v14H6zM14 3v5h5M9 12h7m-7 4h7"/></svg><span>لائحة الحضور والانضباط</span></button>
+        <button class="nav-item" type="button" data-view="payroll"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18m-13 5h4"/></svg><span>الرواتب الشهرية</span></button>
+      </nav>
+      <div class="sidebar-foot">مساحة العمل<br>ماك هيلز</div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div class="header-brand"><div class="crumb" id="crumb">الموظفون</div><button class="small-btn" id="openSeptemberArchiveBtn" type="button">معلومات شهر سبتمبر</button></div><div class="top-actions"><div class="today" id="today"></div><div class="api-actions"><span class="api-status" id="apiStatus" role="status">جارٍ فحص الخادم</span><button class="small-btn" id="connectButton" type="button">اتصال بالخادم</button></div><div class="user-chip"><div class="avatar">مم</div><div><div class="user-name">محمد مكي</div><div class="user-role">مدير النظام</div></div></div></div></header>
+      <section class="content">
+          <section class="content">
+           <div class="view-panel active" id="employeesView">
+        <div class="heading"><div><p class="eyebrow">ماك هيلز / فريق الشركة</p><h1>إدارة الموظفين</h1><p class="subtitle">بيانات الفريق والرواتب من بداية العمل اليوم.</p></div><button class="primary" id="addBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>إضافة موظف</button></div>
+        <section class="metrics" aria-label="ملخص الموظفين">
+          <article class="metric"><span class="metric-label">إجمالي الموظفين النشطين</span><strong class="metric-value" id="totalCount">0</strong><div class="metric-note">العدد الحالي في النظام</div></article>
+          <article class="metric"><span class="metric-label">متوسط الحضور الشهري</span><strong class="metric-value" id="attendanceRate">0%</strong><div class="metric-note" id="attendanceKpiNote">من أيام العمل المجدولة</div></article>
+          <article class="metric"><span class="metric-label">موظفون سجلوا حضورًا</span><strong class="metric-value" id="presentTodayCount">0</strong><div class="metric-note">اليوم المحدد</div></article>
+          <article class="metric"><span class="metric-label">إجمالي أيام الغياب</span><strong class="metric-value" id="absentLateTodayCount">0</strong><div class="metric-note"><span id="absenceKpiNote">خلال الشهر المحدد</span> <button class="text-action" id="showAbsenceReportBtn" type="button">عرض التقرير</button></div></article>
+        </section>
+        <section class="directory daily-dashboard" aria-labelledby="dashboardDailyTitle">
+          <div class="directory-head"><div><h2 class="directory-title" id="dashboardDailyTitle">الحضور والغياب اليومي</h2><div class="count" id="dashboardDailyCount">-</div></div><label class="field-inline"><span>تاريخ التقرير</span><input id="dashboardDateFilter" type="date" min="2026-09-01"></label></div>
+          <div class="table-scroll"><table class="dashboard-time-table"><thead><tr><th>الموظف</th><th>الحالة</th><th>الحضور</th><th>الانصراف</th><th>التأخير (بالدقائق)</th><th>الوقت الإضافي (بالدقائق)</th><th>سبب الحالة</th><th>الإجراءات</th></tr></thead><tbody id="dashboardDailyRows"></tbody></table></div>
+        </section>
+        <section class="directory" aria-labelledby="directoryTitle">
+          <div class="directory-head"><div><h2 class="directory-title" id="directoryTitle">ترتيب الموظفين حسب الأداء الشهري</h2><div class="count" id="resultCount"></div></div><div class="filters"><label class="field-inline"><span>شهر التقييم</span><input class="filter" id="performanceMonth" type="month" min="2026-09" aria-label="شهر تقييم الموظفين"></label><label class="search-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><input class="search" id="searchInput" type="search" placeholder="ابحث بالاسم أو رقم البصمة" aria-label="ابحث بالاسم أو رقم البصمة"></label><select class="filter" id="statusFilter" aria-label="تصفية حسب الحالة"><option value="all">كل الحالات</option><option value="نشط">نشط</option><option value="غير نشط">غير نشط</option></select></div></div>
+          <div class="table-scroll employee-table-container"><table class="table employee-table"><thead><tr><th scope="col">الترتيب / التقييم</th><th scope="col">الموظف</th><th scope="col">المسمى الوظيفي</th><th scope="col">القسم</th><th scope="col">تاريخ البداية</th><th scope="col">نهاية الخدمة</th><th scope="col">الراتب الأساسي</th><th scope="col">أجر الساعة</th><th scope="col">الشفت</th><th scope="col">رقم البصمة</th><th scope="col">الحالة</th><th scope="col">إجراءات</th></tr></thead><tbody id="rows"></tbody></table><div class="empty" id="emptyState">مفيش موظفين مطابقين للبحث.</div></div>
+          <div class="footer" id="footer"></div>
+        </section>
+             </div>
+             <div class="view-panel" id="attendanceView">
+        <div class="view-heading"><div><p class="eyebrow">ماك هيلز / سجل الحركات</p><h1>الحضور والانصراف</h1><p>سجلات الجهاز والحركات اليدوية والأذونات المسجلة.</p></div><button class="primary" id="addAttendanceBtn" type="button">إضافة حركة</button></div>
+        <div class="directory">
+         <div class="directory-head"><div><h2 class="directory-title">الحضور والانصراف اليومي</h2><div class="count" id="attendanceCount">0 موظف</div></div><div class="filters attendance-filters"><label class="field-inline"><span>التاريخ</span><input id="attendanceDay" type="date" min="2026-09-01"></label><label class="field-inline"><span>الموظف</span><select id="attendanceEmployee"><option value="">كل الموظفين</option></select></label><button class="small-btn" id="refreshAttendanceBtn" type="button">تحديث</button></div></div>
+         <div class="attendance-tablist" role="tablist" aria-label="تقارير اليوم"><button class="attendance-tab active" id="checkinTab" type="button" role="tab" aria-selected="true" aria-controls="checkinPanel" data-attendance-tab="checkin">الحضور</button><button class="attendance-tab" id="checkoutTab" type="button" role="tab" aria-selected="false" aria-controls="checkoutPanel" data-attendance-tab="checkout">الانصراف</button><button class="attendance-tab" id="absenceTab" type="button" role="tab" aria-selected="false" aria-controls="absencePanel" data-attendance-tab="absence">الغياب والتقرير الشهري</button></div>
+         <section class="attendance-panel active" id="checkinPanel" role="tabpanel" aria-labelledby="checkinTab"><div class="table-scroll"><table class="attendance-time-table"><thead><tr><th>الموظف</th><th>الحالة</th><th>وقت الحضور</th><th>التأخير (بالدقائق)</th><th>الوقت الإضافي (بالدقائق)</th><th>سبب الحالة</th><th>الإجراءات</th></tr></thead><tbody id="checkinRows"></tbody></table></div></section>
+         <section class="attendance-panel" id="checkoutPanel" role="tabpanel" aria-labelledby="checkoutTab" hidden><div class="table-scroll"><table class="attendance-time-table"><thead><tr><th>الموظف</th><th>الحالة</th><th>وقت الانصراف</th><th>التأخير (بالدقائق)</th><th>الوقت الإضافي (بالدقائق)</th><th>سبب الحالة</th><th>الإجراءات</th></tr></thead><tbody id="checkoutRows"></tbody></table></div></section>
+         <section class="attendance-panel" id="absencePanel" role="tabpanel" aria-labelledby="absenceTab" hidden><div class="filter-row"><label class="field-inline"><span>شهر الغياب</span><input id="absenceMonth" type="month" min="2026-09"></label><strong id="absenceSummary" class="count"></strong></div><div class="table-scroll"><table><thead><tr><th>الموظف</th><th>التاريخ</th><th>الحالة</th><th>سبب الغياب</th><th>إجراء</th></tr></thead><tbody id="absenceRows"></tbody></table></div></section>
+         <section class="directory attendance-detailed-report" id="attendanceDetailReport">
+          <div class="attendance-report-printhead"><div class="print-brand">MAK HILLS GROUP</div><div><strong>التقرير التفصيلي للحضور والانصراف</strong><span id="attendancePrintDate"></span></div></div>
+          <div class="directory-head attendance-report-toolbar"><div><h2 class="directory-title">التقرير التفصيلي اليومي</h2><div class="count">أوقات وساعات العمل الفعلية وحالة كل موظف</div></div><button class="primary" id="printAttendanceReportBtn" type="button">طباعة التقرير</button></div>
+          <div class="table-scroll"><table class="attendance-report-table"><thead><tr><th>اسم الموظف</th><th>التاريخ</th><th>الحضور الفعلي</th><th>الانصراف الفعلي</th><th>التأخير (بالدقائق)</th><th>الوقت الإضافي (بالدقائق)</th><th>ساعات العمل الفعلية</th><th>حالة اليوم</th></tr></thead><tbody id="attendanceReportRows"></tbody></table></div>
+         </section>
+          <div class="notice error-notice" id="attendanceNotice" hidden></div>
+        </div>
+        <div class="notice">الحركات اليدوية تظهر بوضوح كمصدر «يدوي». تسجيل إذن أو إجازة هنا يحفظه كسجل؛ أي مبلغ يُخصم من الراتب يُدخل في شاشة الرواتب مع ملاحظة.</div>
+             </div>
+             <div class="view-panel" id="septemberArchiveView">
+        <div class="september-print-head"><div class="print-brand">MAK HILLS GROUP</div><div><strong>أرشيف الحضور والانصراف · سبتمبر 2026</strong><span>نسخة محفوظة للقراءة فقط · تم إنشاؤها <span id="septemberArchiveCreated"></span></span></div></div>
+        <div class="view-heading"><div><p class="eyebrow">MAK HILLS GROUP / الموارد البشرية</p><h1>معلومات شهر سبتمبر 2026</h1><p>أرشيف ثابت للحضور والغياب والإجازات وتفاصيل الموظفين.</p></div><button class="primary" id="printSeptemberArchiveBtn" type="button">طباعة الأرشيف</button></div>
+        <section class="metrics archive-metrics" aria-label="إحصائيات سبتمبر">
+          <article class="metric"><span class="metric-label">أيام الحضور المسجلة</span><strong class="metric-value" id="septemberAttendanceDays">0</strong><div class="metric-note">مجموع أيام الموظفين</div></article>
+          <article class="metric"><span class="metric-label">أيام الغياب</span><strong class="metric-value" id="septemberAbsenceDays">0</strong><div class="metric-note" id="septemberAbsenceNote">بدون عذر وبعذر</div></article>
+          <article class="metric"><span class="metric-label">الإجازات المدفوعة</span><strong class="metric-value" id="septemberPaidLeaveDays">0</strong><div class="metric-note">أيام معتمدة</div></article>
+          <article class="metric"><span class="metric-label">متوسط الحضور الشهري</span><strong class="metric-value" id="septemberAverageAttendance">0%</strong><div class="metric-note" id="septemberArchiveWorkdays">30 يوماً</div></article>
+        </section>
+        <section class="directory archive-section" aria-labelledby="septemberEmployeeSummaryTitle">
+          <div class="directory-head"><div><h2 class="directory-title" id="septemberEmployeeSummaryTitle">ملخص الموظفين</h2><div class="count" id="septemberEmployeeCount">-</div></div></div>
+          <div class="table-scroll"><table class="september-archive-table"><thead><tr><th>الموظف</th><th>أيام الدوام</th><th>الحضور</th><th>الغياب</th><th>إجازة مدفوعة</th><th>التأخير بالدقائق</th><th>الإضافي بالدقائق</th><th>ساعات العمل</th><th>نسبة الحضور</th></tr></thead><tbody id="septemberEmployeeRows"></tbody></table></div>
+        </section>
+        <section class="directory archive-section" aria-labelledby="septemberDailyTitle">
+          <div class="directory-head"><div><h2 class="directory-title" id="septemberDailyTitle">التفاصيل اليومية المحفوظة</h2><div class="count" id="septemberDailyCount">-</div></div><label class="field-inline archive-filter"><span>الموظف</span><select id="septemberEmployeeFilter"><option value="">كل الموظفين</option></select></label></div>
+          <div class="table-scroll"><table class="september-archive-table september-daily-table"><thead><tr><th>الموظف</th><th>التاريخ</th><th>اليوم</th><th>الحالة</th><th>الحضور</th><th>الانصراف</th><th>التأخير</th><th>الإضافي</th><th>الساعات الفعلية</th><th>سبب / تفاصيل</th></tr></thead><tbody id="septemberDailyRows"></tbody></table></div>
+        </section>
+        <div class="notice" id="septemberArchiveNotice" role="note">هذا أرشيف قراءة فقط؛ لا تتوفر منه إجراءات تعديل أو حذف.</div>
+             </div>
+             <div class="view-panel" id="policyView">
+        <div class="policy-print-head"><div class="brand-wordmark" aria-label="Mak Hills Group"><span class="brand-wordmark-main">Mak Hills</span><span class="brand-wordmark-group">Group</span></div><div class="policy-print-title">لائحة الحضور والانضباط</div></div>
+        <div class="view-heading"><div><p class="eyebrow">MAK HILLS GROUP / الموارد البشرية</p><h1>لائحة الحضور والانضباط</h1><p>المواعيد، الأذونات، التأخير والغياب.</p></div><button class="primary" id="printPolicyBtn" type="button">تصدير اللائحة PDF</button></div>
+        <div class="policy-grid">
+          <article class="policy-card"><div class="policy-number">12:00 م – 08:00 م</div><h2>مواعيد العمل</h2><p>ساعات الشفت الأساسية ثماني ساعات يوميًا. تُقارن حركات الحضور والانصراف بهذا الشفت.</p></article>
+          <article class="policy-card"><div class="policy-number">الجمعة</div><h2>الراحة الأسبوعية</h2><p>يوم الجمعة هو يوم الراحة الأسبوعية. ساعات العمل المسجلة فيه تُحسب ساعات إضافية.</p></article>
+          <article class="policy-card"><div class="policy-number">120 دقيقة</div><h2>رصيد التأخير والأذونات</h2><p>رصيد شهري ثابت لا ينقص تلقائيًا بسبب الحضور أو التأخير؛ لا يتغير إلا بقرار إداري مباشر موثق في ملف الموظف.</p></article>
+          <article class="policy-card"><div class="policy-number">0.5 يوم / 30 دقيقة</div><h2>تجاوز الرصيد</h2><p>بعد استهلاك الرصيد المجاني، يُخصم نصف يوم عن كل 30 دقيقة كاملة من التجاوز. تُحسب قيمة اليوم من الراتب الأساسي ÷ أيام العمل المجدولة بعد استبعاد الجمعة والعطلات الرسمية.</p></article>
+          <article class="policy-card"><div class="policy-number">يومان</div><h2>الغياب دون عذر</h2><p>يُخصم يومان من الراتب عن كل يوم غياب مسجل دون عذر مقبول. الغياب بعذر يُسجل منفصلًا ولا يطبق عليه هذا الخصم.</p></article>
+          <article class="policy-card"><div class="policy-number">× 1.5</div><h2>الساعات الإضافية</h2><p>الساعات بعد نهاية الشفت، والعمل خلال يوم الراحة الأسبوعية، تُحسب بمضاعف 1.5 من أجر الساعة.</p></article>
+          <article class="policy-card"><div class="policy-number">15 / 21 / 30 / 45 يومًا</div><h2>الإجازة السنوية</h2><p>15 يومًا خلال السنة الأولى، و21 يومًا من السنة الثانية، و30 يومًا بعد عشر سنوات خدمة أو عند بلوغ 50 عامًا، و45 يومًا لذوي الإعاقة. تُخصم الإجازة العارضة من رصيدها.</p></article>
+          <article class="policy-card"><div class="policy-number">7 أيام سنويًا · يومان متتاليان</div><h2>الإجازة العارضة</h2><p>تُسجل ضمن حد سبعة أيام في السنة، وبحد أقصى يومين متتاليين، وتُخصم أيامها من الرصيد السنوي.</p></article>
+          <article class="policy-card"><div class="policy-number">وفق التقرير الطبي</div><h2>الإجازة المرضية</h2><p>تُسجل منفصلة عن الرصيد السنوي، مع مرجع التقرير الطبي، وتخضع للضوابط القانونية المعمول بها.</p></article>
+        </div>
+        <section class="directory holiday-directory" aria-labelledby="holidayTitle"><div class="directory-head"><div><h2 class="directory-title" id="holidayTitle">العطلات الرسمية المسجلة</h2><div class="count">تُستبعد من أيام العمل والراتب المستحق</div></div></div><form class="filter-row holiday-form" id="holidayForm"><label class="field-inline"><span>تاريخ العطلة</span><input id="holidayDate" type="date" required></label><label class="field-inline"><span>اسم العطلة الرسمية</span><input id="holidayName" type="text" maxlength="100" required></label><button class="small-btn" type="submit">إضافة عطلة</button></form><div class="table-scroll"><table><thead><tr><th>التاريخ</th><th>العطلة</th><th>إجراء</th></tr></thead><tbody id="holidayRows"></tbody></table></div><div class="notice error-notice" id="holidayNotice" hidden></div></section>
+        <section class="directory holiday-directory" aria-labelledby="outageTitle"><div class="directory-head"><div><h2 class="directory-title" id="outageTitle">فترات توقف أجهزة البصمة</h2><div class="count">تُعامل أيام العمل المتأثرة كدوام كامل مفترض ما لم يوجد تصحيح يدوي</div></div></div><form class="filter-row holiday-form" id="outageForm"><label class="field-inline"><span>من تاريخ</span><input id="outageStartDate" type="date" required></label><label class="field-inline"><span>إلى تاريخ</span><input id="outageEndDate" type="date" required></label><label class="field-inline"><span>النطاق المتأثر</span><select id="outageEmployee"><option value="">جميع الموظفين</option></select></label><label class="field-inline"><span>الجهاز / سبب التوقف</span><input id="outageLabel" type="text" maxlength="120" required></label><button class="small-btn" type="submit">تسجيل التوقف</button></form><div class="table-scroll"><table><thead><tr><th>من</th><th>إلى</th><th>النطاق</th><th>الجهاز / السبب</th><th>إجراء</th></tr></thead><tbody id="outageRows"></tbody></table></div><div class="notice error-notice" id="outageNotice" hidden></div></section>
+        <div class="notice">الأيام المجدولة قبل أول بصمة في الشهر تُعرض كدوام كامل مفترض، وكذلك الأيام داخل توقف مسجل. أي حركة يدوية أو غياب مسجل لذلك اليوم يستبدل الافتراض؛ راجع السجلات قبل اعتماد الرواتب.</div>
+       </div>
+             <div class="view-panel" id="payrollView">
+        <div class="print-header"><div><div class="print-brand">MAK HILLS GROUP</div><div class="print-subtitle">REAL ESTATE DEVELOPMENT · كشف الرواتب الشهرية</div></div><div class="print-period">الفترة: <span id="printPeriod"></span></div></div>
+        <div class="view-heading"><div><p class="eyebrow">ماك هيلز / المراجعة الشهرية</p><h1>تقرير الرواتب</h1><p>احسب المسودة، راجع المكونات، ثم اعتمدها.</p></div></div>
+        <div class="filter-row payroll-controls"><label class="field-inline"><span>شهر التقرير</span><input id="payrollMonth" type="month" min="2026-09"></label><button class="primary" id="calculatePayrollBtn" type="button">حساب مسودة الرواتب</button><button class="small-btn" id="approvePayrollBtn" type="button">اعتماد الكشف</button><div class="export-actions"><button class="small-btn" id="exportExcelBtn" type="button">تصدير Excel</button><button class="small-btn" id="exportPdfBtn" type="button">طباعة / PDF</button></div></div>
+        <div class="notice" id="payrollNotice">أجر الساعة والشفت وبداية ونهاية الدوام يجب ضبطها للموظفين قبل الحساب.</div>
+        <div class="report-summary"><div class="report-total"><span>الأجر الأساسي</span><strong id="totalBase">0 ج.م</strong></div><div class="report-total"><span>أجر الإضافي</span><strong id="totalOvertime">0 ج.م</strong></div><div class="report-total"><span>إجمالي الخصومات</span><strong id="totalDeductions">0 ج.م</strong></div><div class="report-total"><span>الصافي النهائي</span><strong id="totalNet">0 ج.م</strong></div></div>
+        <div class="directory"><div class="table-scroll"><table class="report-table"><thead><tr><th>الموظف</th><th>ساعات عادية</th><th>أيام شفت مفترض</th><th>الأساسي</th><th>دقائق التأخير</th><th>خصم التأخير</th><th>ساعات إضافية ×1.5</th><th>أجر الإضافي</th><th>خصومات / أذونات / غياب</th><th>الصافي</th><th>الحالة</th></tr></thead><tbody id="payrollRows"><tr><td class="empty-cell" colspan="11">اختر شهرًا واضغط «حساب مسودة الرواتب».</td></tr></tbody></table></div></div>
+        <form class="filter-row adjustment-form" id="adjustmentForm"><label class="field-inline"><span>الموظف</span><select id="adjustmentEmployee" required><option value="">اختر موظفًا</option></select></label><label class="field-inline"><span>نوع الخصم</span><select id="adjustmentKind"><option value="deduction">خصم</option><option value="permission">إذن / غياب غير مدفوع</option></select></label><label class="field-inline"><span>المبلغ بالجنيه</span><input id="adjustmentAmount" type="number" min="0" step="0.01" required></label><label class="field-inline"><span>السبب</span><input id="adjustmentNote" type="text" required placeholder="اكتب سبب التعديل"></label><button class="small-btn" type="submit">إضافة للخصومات</button></form>
+             </div>
+      </section>
+    </main>
+  </div>
+  <div class="backdrop api-auth-backdrop" id="apiAuthBackdrop" role="presentation"><section class="modal login-modal" role="dialog" aria-modal="true" aria-labelledby="apiAuthTitle"><div class="modal-head"><h2 id="apiAuthTitle">تسجيل الدخول إلى النظام</h2></div><form class="form" id="apiAuthForm"><p class="subtitle field full">أدخل رمز API الذي أعدته الإدارة لهذه البيئة. يُحفظ في الجلسة الحالية فقط.</p><div class="field full"><label for="apiAuthToken">رمز API</label><input class="control" id="apiAuthToken" type="password" autocomplete="current-password" required></div><p class="login-error" id="apiAuthError" role="alert" hidden></p><div class="form-actions"><button class="primary" type="submit">اتصال آمن</button></div></form></section></div>
+  <div class="backdrop" id="backdrop" role="presentation"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-head"><h2 id="modalTitle">إضافة موظف جديد</h2><button class="close" id="closeBtn" type="button" aria-label="إغلاق">&times;</button></div>
+    <form class="form" id="employeeForm"><input id="employeeId" type="hidden">
+      <div class="field full"><label for="employeeName">اسم الموظف</label><input class="control" id="employeeName" name="name" required maxlength="70" placeholder="مثال: سلمى أحمد"></div>
+      <div class="field"><label for="employeeAttendanceId">رقم الموظف في البصمة</label><input class="control" id="employeeAttendanceId" name="attendance_user_id" placeholder="مثال: 104"></div>
+      <div class="field"><label for="employeeRole">المسمى الوظيفي</label><input class="control" id="employeeRole" name="role" required maxlength="60" placeholder="مثال: مصمم واجهات"></div>
+      <div class="field"><label for="employeeDepartment">القسم</label><input class="control" id="employeeDepartment" name="department" required maxlength="50" placeholder="مثال: التصميم"></div>
+      <div class="field"><label for="employeeDate">تاريخ التعيين</label><input class="control" id="employeeDate" name="date" type="date" required><label class="permission-paid"><input id="employeeStartDateVerified" type="checkbox" checked> تاريخ التعيين مؤكد</label></div>
+      <div class="field"><label for="employeeEndDate">تاريخ نهاية الخدمة</label><input class="control" id="employeeEndDate" name="end_date" type="date"></div>
+      <div class="field"><label for="employeeBirthDate">تاريخ الميلاد</label><input class="control" id="employeeBirthDate" name="birth_date" type="date"></div>
+      <label class="permission-paid"><input id="employeeDisability" type="checkbox"> موظف من ذوي الإعاقة (استحقاق 45 يومًا)</label>
+      <div class="field"><label for="employeeBaseSalary">الراتب الإجمالي الشهري (جنيه)</label><input class="control" id="employeeBaseSalary" name="base_monthly_salary" type="number" min="0" step="0.01" value="0" required></div>
+      <div class="field"><label for="employeeDailyRate">أجر اليوم المحسوب (جنيه)</label><input class="control salary-derived" id="employeeDailyRate" type="number" min="0" step="0.01" readonly></div>
+      <div class="field"><label for="employeeSalary">أجر الساعة (جنيه)</label><input class="control" id="employeeSalary" name="hourly_wage" type="number" min="0" step="0.01" value="0" required></div>
+      <div class="field"><label for="employeeDays">ساعات الشفت الأساسي</label><input class="control" id="employeeDays" name="shift_hours" type="number" min="0.5" max="24" step="0.5" value="8" required></div>
+      <div class="field"><label for="employeeShiftStart">بداية الشفت</label><input class="control" id="employeeShiftStart" name="shift_start" type="time"></div>
+      <div class="field"><label for="employeeShiftEnd">نهاية الشفت</label><input class="control" id="employeeShiftEnd" name="shift_end" type="time"></div>
+      <div class="field"><label for="employeeRestDay">الراحة الأسبوعية</label><select class="control" id="employeeRestDay"><option value="0">الاثنين</option><option value="1">الثلاثاء</option><option value="2">الأربعاء</option><option value="3">الخميس</option><option value="4" selected>الجمعة</option><option value="5">السبت</option><option value="6">الأحد</option></select></div>
+      <div class="field"><label for="employeeStatus">الحالة</label><select class="control" id="employeeStatus" name="status"><option>نشط</option><option>غير نشط</option></select></div>
+      <p class="login-error" id="employeeSaveNotice" role="alert"></p><div class="form-actions"><button class="primary" type="submit">حفظ البيانات</button><button class="secondary" id="cancelBtn" type="button">إلغاء</button></div>
+    </form></section></div>
+  <div class="backdrop" id="employeeSummaryBackdrop" role="presentation"><section class="modal employee-summary" role="dialog" aria-modal="true" aria-labelledby="employeeSummaryTitle"><div class="modal-head"><div><h2 id="employeeSummaryTitle">ملف الموظف</h2><p class="summary-period" id="employeeSummaryPeriod"></p></div><button class="close" id="closeEmployeeSummaryBtn" type="button" aria-label="إغلاق">&times;</button></div><div class="summary-grid"><div class="summary-stat"><span>الاستحقاق الحالي</span><strong id="summaryEntitlement">-</strong></div><div class="summary-stat"><span>نسبة الحضور الشهرية</span><strong id="summaryAttendanceRate">-</strong></div><div class="summary-stat"><span>الانضباط الشهري</span><strong id="summaryPunctuality">-</strong></div><div class="summary-stat"><span>التقييم الشهري</span><strong id="summaryRating">-</strong></div></div><div class="summary-breakdown"><div><span>درجة الأداء</span><strong id="summaryPerformanceScore">-</strong></div><div><span>أيام الحضور</span><strong id="summaryDaysPresent">-</strong></div><div><span>أيام الدوام المفترض</span><strong id="summaryAssumedDays">-</strong></div><div><span>أيام العمل المنقضية</span><strong id="summaryWorkdays">-</strong></div><div><span>أيام الغياب</span><strong id="summaryAbsence">-</strong></div><div><span>دقائق التأخير</span><strong id="summaryLateMinutes">-</strong></div><div><span>الراتب الشهري</span><strong id="summaryMonthlySalary">-</strong></div><div><span>أجر اليوم / الساعة</span><strong id="summaryRates">-</strong></div><div><span>خصم الغياب</span><strong id="summaryAbsenceDeduction">-</strong></div><div><span>خصم الأذونات غير المدفوعة</span><strong id="summaryPermissionDeduction">-</strong></div></div></section></div>
+  <div class="backdrop" id="attendanceModal" role="presentation"><section class="modal wide-modal" role="dialog" aria-modal="true" aria-labelledby="attendanceModalTitle"><div class="modal-head"><h2 id="attendanceModalTitle">إضافة حركة يدوية</h2><button class="close" id="closeAttendanceBtn" type="button" aria-label="إغلاق">&times;</button></div><form class="form manual-form" id="attendanceForm"><input id="manualAttendanceId" type="hidden"><div class="field full"><label for="manualEmployee">الموظف</label><select class="control" id="manualEmployee" required></select></div><div class="field"><label for="manualTime">التاريخ والوقت</label><input class="control" id="manualTime" type="datetime-local" required></div><div class="field"><label for="manualStatus">نوع الحركة</label><select class="control" id="manualStatus"><option value="IN">حضور</option><option value="OUT">انصراف</option><option value="FIELD_IN">حضور بإذن ميداني / معاينة عقارية</option><option value="FIELD_OUT">انصراف بإذن ميداني / معاينة عقارية</option><option value="PERMISSION">إذن</option><option value="ABSENCE_EXCUSED">غياب بعذر</option><option value="ABSENCE_UNEXCUSED">غياب بدون عذر</option></select></div><div class="field"><label for="manualDuration">مدة الإذن (دقيقة)</label><input class="control" id="manualDuration" type="number" min="0" max="1440" value="0"></div><div class="field full"><label for="manualNote">ملاحظة / سبب</label><input class="control" id="manualNote" maxlength="250" placeholder="سبب الحركة اليدوية"></div><div class="form-actions"><button class="primary" type="submit">حفظ الحركة</button><button class="secondary" id="cancelAttendanceBtn" type="button">إلغاء</button></div></form></section></div>
+  <style>
+    .attendance-report-table{min-width:1080px;table-layout:fixed}
+    .attendance-report-table th,.attendance-report-table td{white-space:nowrap}
+    .attendance-report-table th:nth-child(1){width:19%}
+    .attendance-report-table th:nth-child(2){width:11%}
+    .attendance-report-table th:nth-child(3),.attendance-report-table th:nth-child(4){width:12%}
+    .attendance-report-table th:nth-child(5),.attendance-report-table th:nth-child(6){width:12%}
+    .attendance-report-table th:nth-child(7){width:13%}
+    .attendance-report-table th:nth-child(8){width:9%}
+    .attendance-report-printhead{display:none}
+    .attendance-report-printhead span{display:block;margin-top:4px;color:#53617a;font-size:10px}
+    .september-print-head{display:none}
+    .september-print-head span{display:block;margin-top:4px;color:#53617a;font-size:10px}
+    .archive-metrics{margin-top:4px}
+    .archive-section{margin:0 0 18px;overflow:hidden}
+    .september-archive-table{min-width:1120px;table-layout:fixed}
+    .september-daily-table{min-width:1480px}
+    .september-archive-table td{white-space:nowrap}
+    .september-archive-table td:last-child{white-space:normal;min-width:220px}
+    .archive-filter{min-width:180px}
+    .archive-filter select{min-width:180px}
+    @media print{
+      @page{size:A4 landscape;margin:12mm}
+      body.printing-attendance-report .sidebar,body.printing-attendance-report .topbar,
+      body.printing-attendance-report .view-panel:not(#attendanceView){display:none!important}
+      body.printing-attendance-report #employeesView,body.printing-attendance-report #policyView,
+      body.printing-attendance-report #payrollView{display:none!important}
+      body.printing-attendance-report #attendanceView{display:block!important;padding:0!important}
+      body.printing-attendance-report #attendanceView>.view-heading,
+      body.printing-attendance-report #attendanceView>.notice{display:none!important}
+      body.printing-attendance-report #attendanceView>.directory>:not(#attendanceDetailReport){display:none!important}
+      body.printing-attendance-report .app,body.printing-attendance-report .main,
+      body.printing-attendance-report .content{display:block!important;max-width:none!important;padding:0!important;margin:0!important}
+      body.printing-attendance-report #attendanceDetailReport{display:block!important;border:0!important;overflow:visible!important}
+      body.printing-attendance-report #attendanceView>.directory{display:block!important;border:0!important;overflow:visible!important}
+      body.printing-attendance-report .attendance-report-printhead{display:flex!important;align-items:center;justify-content:space-between;gap:20px;border-bottom:3px solid #c69b4b;padding-bottom:12px;margin-bottom:16px}
+      body.printing-attendance-report .attendance-report-toolbar{display:none!important}
+      body.printing-attendance-report .table-scroll{overflow:visible!important}
+      body.printing-attendance-report .attendance-report-table{width:100%!important;min-width:0!important;font-size:8pt!important}
+      body.printing-attendance-report .attendance-report-table th{background:#102347!important;color:#fff!important;font-size:8pt!important;padding:8px 6px!important}
+      body.printing-attendance-report .attendance-report-table td{font-size:9pt!important;padding:8px 6px!important;border-color:#d8dfeb!important}
+      body.printing-attendance-report .attendance-report-table tbody tr:nth-child(even){background:#f4f6fa!important}
+      @page{size:A4 landscape;margin:11mm}
+      body.printing-monthly-attendance .sidebar,body.printing-monthly-attendance .topbar,
+      body.printing-monthly-attendance .view-panel:not(#attendanceView){display:none!important}
+      body.printing-monthly-attendance #attendanceView{display:block!important;padding:0!important}
+      body.printing-monthly-attendance #attendanceView>.view-heading,
+      body.printing-monthly-attendance #attendanceView>.notice{display:none!important}
+      body.printing-monthly-attendance #attendanceView>.directory>:not(#absencePanel){display:none!important}
+      body.printing-monthly-attendance .app,body.printing-monthly-attendance .main,
+      body.printing-monthly-attendance .content{display:block!important;max-width:none!important;padding:0!important;margin:0!important}
+      body.printing-monthly-attendance #attendanceView>.directory{display:block!important;border:0!important;overflow:visible!important}
+      body.printing-monthly-attendance #absencePanel{display:block!important}
+      body.printing-monthly-attendance #absencePanel>.filter-row{display:none!important}
+      body.printing-monthly-attendance .monthly-absence-printhead{display:flex!important;align-items:center;justify-content:space-between;gap:18px;border-bottom:3px solid #c69b4b;padding-bottom:10px;margin-bottom:14px}
+      body.printing-monthly-attendance .monthly-absence-table{width:100%!important;min-width:0!important;font-size:9pt!important}
+      body.printing-monthly-attendance .monthly-absence-table th{background:#102347!important;color:#fff!important;font-size:8pt!important;padding:7px!important}
+      body.printing-monthly-attendance .monthly-absence-table td{font-size:8pt!important;padding:6px!important;border-color:#d8dfeb!important;white-space:normal!important}
+      body.printing-monthly-attendance .monthly-absence-table th:last-child,
+      body.printing-monthly-attendance .monthly-absence-table td:last-child{display:none!important}
+      @page{size:A4 landscape;margin:10mm}
+      body.printing-september-archive .sidebar,body.printing-september-archive .topbar,
+      body.printing-september-archive .view-panel:not(#septemberArchiveView){display:none!important}
+      body.printing-september-archive #septemberArchiveView{display:block!important;padding:0!important}
+      body.printing-september-archive .app,body.printing-september-archive .main,
+      body.printing-september-archive .content{display:block!important;max-width:none!important;padding:0!important;margin:0!important}
+      body.printing-september-archive .september-print-head{display:flex!important;align-items:center;justify-content:space-between;gap:20px;border-bottom:3px solid #c69b4b;padding-bottom:10px;margin-bottom:12px}
+      body.printing-september-archive .view-heading,body.printing-september-archive .archive-filter,
+      body.printing-september-archive #septemberArchiveNotice{display:none!important}
+      body.printing-september-archive .archive-metrics{grid-template-columns:repeat(4,1fr);gap:7px;margin:0 0 10px}
+      body.printing-september-archive .archive-metrics .metric{min-height:0;padding:7px 9px!important;box-shadow:none!important}
+      body.printing-september-archive .archive-metrics .metric-value{font-size:14px!important;margin-top:2px!important}
+      body.printing-september-archive .archive-section{break-inside:auto;margin-bottom:10px;overflow:visible!important;border:0!important}
+      body.printing-september-archive .archive-section .directory-head{padding:7px 4px;border-bottom:1px solid #cbd3df}
+      body.printing-september-archive .table-scroll{overflow:visible!important}
+      body.printing-september-archive .september-archive-table{width:100%!important;min-width:0!important;font-size:7pt!important}
+      body.printing-september-archive .september-archive-table th{background:#102347!important;color:#fff!important;font-size:6.5pt!important;padding:5px 3px!important}
+      body.printing-september-archive .september-archive-table td{font-size:6.5pt!important;padding:4px 3px!important;border-color:#d8dfeb!important;white-space:normal!important}
+      body.printing-september-archive .september-archive-table tbody tr:nth-child(even){background:#f4f6fa!important}
+    }
+  </style>
+  <script>
+    const apiOrigin=window.location.origin;
+    let employees=[];
+    let attendanceLogs=[];
+    let dashboardAttendanceLogs=[];
+    let monthlyAbsenceLogs=[];
+    let performanceEmployees=[];
+    let dashboardPerformanceReport=null;
+    let septemberArchiveData=null;
+    let attendanceModalMode="all";
+    let summaryEmployeeId="";
+    const rows=document.getElementById("rows"),employeeModal=document.getElementById("backdrop"),employeeForm=document.getElementById("employeeForm"),searchInput=document.getElementById("searchInput"),statusFilter=document.getElementById("statusFilter");
+    const attendanceModal=document.getElementById("attendanceModal");
+    const employeeSummaryBackdrop=document.getElementById("employeeSummaryBackdrop");
+    const employeeSummaryModal=employeeSummaryBackdrop.querySelector(".modal");
+    const summaryDetails=document.createElement("section");
+    summaryDetails.className="summary-details";
+    summaryDetails.innerHTML='<section><div class="summary-section-head"><h3>أرصدة الإجازات السنوية</h3><span id="summaryLeaveYear"></span></div><div class="summary-breakdown"><div><span>السنوية المستحقة</span><strong id="leaveAnnualEntitlement">-</strong></div><div><span>السنوية المستخدمة</span><strong id="leaveAnnualUsed">-</strong></div><div><span>المتبقي السنوي بعد العارضة</span><strong id="leaveAnnualRemaining">-</strong></div><div><span>العارضة المستخدمة / المتبقية</span><strong id="leaveCasualBalance">-</strong></div><div><span>المرضية المسجلة</span><strong id="leaveSickUsed">-</strong></div></div><form class="form leave-form" id="leaveForm"><div class="field"><label for="leaveType">نوع الإجازة</label><select class="control" id="leaveType"><option value="annual">سنوية</option><option value="casual">عارضة</option><option value="sick">مرضية</option></select></div><div class="field"><label for="leaveStartDate">من تاريخ</label><input class="control" id="leaveStartDate" type="date" required></div><div class="field"><label for="leaveEndDate">إلى تاريخ</label><input class="control" id="leaveEndDate" type="date" required></div><div class="field" id="medicalReferenceField" hidden><label for="medicalReportReference">مرجع التقرير الطبي</label><input class="control" id="medicalReportReference" maxlength="120" placeholder="رقم التقرير أو مرجعه"></div><div class="field full"><label for="leaveNote">ملاحظة</label><input class="control" id="leaveNote" maxlength="250"></div><div class="form-actions"><button class="primary" type="submit">تسجيل الإجازة</button></div><p class="login-error" id="leaveNotice" role="status"></p></form><div class="table-scroll"><table class="summary-table"><thead><tr><th>النوع</th><th>الفترة</th><th>الأيام</th><th>التقرير الطبي / الملاحظة</th></tr></thead><tbody id="summaryLeaveRows"></tbody></table></div></section><section><div class="summary-section-head"><h3>رصيد التأخير والأذونات لهذا الشهر</h3><span id="summaryAllowancePeriod"></span></div><div class="allowance-meter"><strong id="summaryAllowanceUsed">0 / 120 دقيقة</strong><span id="summaryAllowanceRemaining">المتبقي 120 دقيقة</span></div><progress id="summaryAllowanceProgress" max="120" value="0" aria-label="استهلاك رصيد التأخير والأذونات"></progress><div class="table-scroll"><table class="summary-table"><thead><tr><th>الشهر</th><th>تأخير</th><th>أذونات غير مدفوعة</th><th>المستخدم</th><th>المتبقي</th></tr></thead><tbody id="summaryAllowanceRows"></tbody></table></div></section><section><div class="summary-section-head"><h3>سجل الأذونات</h3></div><div class="table-scroll"><table class="summary-table"><thead><tr><th>التاريخ</th><th>النوع</th><th>المدة</th><th>الحالة</th><th>الملاحظة</th></tr></thead><tbody id="summaryPermissionRows"></tbody></table></div></section><section><div class="summary-section-head"><h3>تفاصيل الخصميات</h3></div><div class="table-scroll"><table class="summary-table"><thead><tr><th>الفترة</th><th>السبب</th><th>المبلغ</th></tr></thead><tbody id="summaryDeductionRows"></tbody></table></div></section>';
+    const allowanceAdminForm=document.createElement("form");
+    allowanceAdminForm.className="form allowance-admin-form";
+    allowanceAdminForm.innerHTML='<p class="allowance-admin-note">رصيد 120 دقيقة لا ينقص تلقائياً بسبب الحضور أو التأخير؛ لا يتغير إلا بهذا القرار الإداري المحفوظ مع سببه.</p><div class="field"><label for="allowanceRemainingInput">الرصيد المتبقي يدوياً (من 120 دقيقة)</label><input class="control" id="allowanceRemainingInput" type="number" min="0" max="120" step="1" required></div><div class="field"><label for="allowanceDecisionNote">قرار الإدارة / السبب</label><input class="control" id="allowanceDecisionNote" maxlength="250" required></div><div class="form-actions"><button class="small-btn" type="submit">حفظ الرصيد اليدوي</button><span id="allowanceUpdateNotice" class="count" role="status"></span></div>';
+    summaryDetails.querySelector(".allowance-meter").after(allowanceAdminForm);
+    employeeSummaryModal.append(summaryDetails);
+    const monthlyAbsencePrintHead=document.createElement("div");
+    monthlyAbsencePrintHead.className="monthly-absence-printhead";
+    monthlyAbsencePrintHead.innerHTML='<div class="print-brand">MAK HILLS GROUP</div><div><strong>تقرير الغياب الشهري</strong><span id="absencePrintPeriod"></span></div>';
+    document.getElementById("absencePanel").prepend(monthlyAbsencePrintHead);
+    const monthlyAbsenceTable=document.querySelector("#absencePanel table");
+    monthlyAbsenceTable.classList.add("monthly-absence-table");
+    const monthlyAbsencePrintButton=document.createElement("button");
+    monthlyAbsencePrintButton.className="small-btn";
+    monthlyAbsencePrintButton.type="button";
+    monthlyAbsencePrintButton.id="printMonthlyAttendanceBtn";
+    monthlyAbsencePrintButton.textContent="طباعة التقرير الشهري";
+    document.querySelector("#absencePanel .filter-row").append(monthlyAbsencePrintButton);
+    const rankingDetailSection=document.createElement("section");
+    rankingDetailSection.className="ranking-detail";
+    rankingDetailSection.innerHTML='<div class="summary-section-head"><h3>تفاصيل ترتيب الشهر</h3><strong id="rankingPosition">-</strong></div><p id="rankingFormula" class="ranking-formula"></p><div id="rankingDetailRows" class="ranking-detail-grid"></div><ol id="rankingTieBreakers" class="ranking-tie-breakers"></ol>';
+    summaryDetails.prepend(rankingDetailSection);
+    const connectButton=document.getElementById("connectButton");
+    connectButton.textContent="إعادة الاتصال";
+    connectButton.title="تحديث الاتصال بالخادم";
+    document.querySelector(".setup-note")?.remove();
+    const manualForm=document.getElementById("attendanceForm");
+    const permissionTypeField=document.createElement("div");
+    permissionTypeField.className="field";permissionTypeField.hidden=true;
+    const permissionTypeLabel=document.createElement("label");
+    permissionTypeLabel.htmlFor="manualPermissionType";permissionTypeLabel.textContent="نوع الإذن";
+    const permissionTypeSelect=document.createElement("select");
+    permissionTypeSelect.className="control";permissionTypeSelect.id="manualPermissionType";
+    permissionTypeSelect.innerHTML='<option value="late">إذن تأخير حضور</option><option value="early">إذن انصراف مبكر</option>';
+    permissionTypeField.append(permissionTypeLabel,permissionTypeSelect);
+    const permissionPaidField=document.createElement("label");
+    permissionPaidField.className="permission-paid";permissionPaidField.hidden=true;
+    const permissionPaidInput=document.createElement("input");permissionPaidInput.type="checkbox";permissionPaidInput.id="manualPermissionPaid";
+    permissionPaidField.append(permissionPaidInput,document.createTextNode("إذن مدفوع، لا يخصم ولا يؤثر على الانضباط"));
+    manualForm.insertBefore(permissionTypeField,document.getElementById("manualDuration").closest(".field"));
+    manualForm.insertBefore(permissionPaidField,document.getElementById("manualNote").closest(".field"));
+    const manualDurationField=document.getElementById("manualDuration").closest(".field");
+    const attendanceStatusOptions={
+      checkin:[["IN","حضور"],["LATE_IN","حضور متأخر"],["LATE_IN_UNEXCUSED","تأخير بدون عذر"],["FIELD_IN","حضور ميداني"]],
+      checkout:[["OUT","انصراف طبيعي"],["EARLY_OUT","انصراف مبكر"],["EXIT_PERMISSION","إذن انصراف"],["FIELD_OUT","انصراف ميداني"]],
+      absence:[["ABSENCE_UNEXCUSED","غياب بدون عذر"],["ABSENCE_EXCUSED","غياب بعذر"],["IN","حضور"],["LATE_IN","حضور متأخر"],["LATE_IN_UNEXCUSED","تأخير بدون عذر"],["OUT","انصراف طبيعي"],["EARLY_OUT","انصراف مبكر"],["EXIT_PERMISSION","إذن انصراف"],["FIELD_IN","حضور ميداني"],["FIELD_OUT","انصراف ميداني"],["PERMISSION","إذن"],["OVERTIME_APPROVED","إذن إضافي مسبق"],["LEAVE","إجازة"]],
+      all:[["IN","حضور"],["LATE_IN","حضور متأخر"],["LATE_IN_UNEXCUSED","تأخير بدون عذر"],["FIELD_IN","حضور ميداني"],["OUT","انصراف طبيعي"],["EARLY_OUT","انصراف مبكر"],["EXIT_PERMISSION","إذن انصراف"],["FIELD_OUT","انصراف ميداني"],["PERMISSION","إذن"],["OVERTIME_APPROVED","إذن إضافي مسبق"],["ABSENCE_UNEXCUSED","غياب بدون عذر"],["ABSENCE_EXCUSED","غياب بعذر"],["LEAVE","إجازة"]],
+    };
+    function updateManualPermissionFields(){const selectedStatus=document.getElementById("manualStatus").value;const isPermission=selectedStatus==="PERMISSION";const isOvertimeApproval=selectedStatus==="OVERTIME_APPROVED";const canUsePermissions=attendanceModalMode==="all"||attendanceModalMode==="absence";permissionTypeField.hidden=!isPermission||!canUsePermissions;permissionPaidField.hidden=!isPermission||!canUsePermissions;manualDurationField.hidden=!(isPermission||isOvertimeApproval)||!canUsePermissions;manualDurationField.querySelector("label").textContent=isOvertimeApproval?"حد الإضافي المصرح به (دقيقة)":"مدة الإذن (دقيقة)"}
+    function configureAttendanceModal(mode,status){
+      attendanceModalMode=mode in attendanceStatusOptions?mode:"all";
+      const statusSelect=document.getElementById("manualStatus");
+      const options=attendanceStatusOptions[attendanceModalMode];
+      statusSelect.innerHTML=options.map(([value,label])=>`<option value="${value}">${label}</option>`).join("");
+      statusSelect.value=options.some(([value])=>value===status)?status:options[0][0];
+      updateManualPermissionFields();
+    }
+      const appShell=document.querySelector(".app");
+      const sidebarToggle=document.getElementById("sidebarToggle");
+      function setSidebarCollapsed(collapsed){appShell.classList.toggle("sidebar-collapsed",collapsed);sidebarToggle.setAttribute("aria-expanded",String(!collapsed));sidebarToggle.setAttribute("aria-label",collapsed?"توسيع القائمة":"طي القائمة");sidebarToggle.title=collapsed?"توسيع القائمة":"طي القائمة";sidebarToggle.querySelector("span").textContent=collapsed?"توسيع":"طي القائمة";sessionStorage.setItem("mak-hills-sidebar-collapsed",String(collapsed))}
+      sidebarToggle.addEventListener("click",()=>setSidebarCollapsed(!appShell.classList.contains("sidebar-collapsed")));
+      if(sessionStorage.getItem("mak-hills-sidebar-collapsed")==="true")setSidebarCollapsed(true);
+    const currentDate=new Date();
+    const today=[currentDate.getFullYear(),String(currentDate.getMonth()+1).padStart(2,"0"),String(currentDate.getDate()).padStart(2,"0")].join("-");
+    const reportingStartDate="2026-09-01";
+    document.getElementById("today").textContent=new Intl.DateTimeFormat("ar-EG",{weekday:"long",day:"numeric",month:"long"}).format(new Date());
+    document.getElementById("dashboardDateFilter").value=today;
+    document.getElementById("dashboardDateFilter").max=today;
+    document.getElementById("attendanceDay").value=today;
+    document.getElementById("attendanceDay").max=today;
+    document.getElementById("absenceMonth").value=today.slice(0,7);
+    document.getElementById("absenceMonth").max=today.slice(0,7);
+    document.getElementById("payrollMonth").min=reportingStartDate.slice(0,7);
+    document.getElementById("payrollMonth").value=today.slice(0,7);
+    document.getElementById("performanceMonth").min=reportingStartDate.slice(0,7);
+    document.getElementById("performanceMonth").max=today.slice(0,7);
+    document.getElementById("performanceMonth").value=today.slice(0,7);
+    document.getElementById("printPeriod").textContent=today.slice(0,7);
+
+    function escapeHtml(value){return String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[char])}
+    function formatMoney(value){return `${new Intl.NumberFormat("ar-EG",{maximumFractionDigits:2}).format(Number(value)||0)} ج.م`}
+    function initials(name){return String(name||"").trim().split(/\s+/).slice(0,2).map(part=>part[0]).join("")}
+    function dateLabel(value){if(!value)return "-";return new Intl.DateTimeFormat("ar-EG",{day:"numeric",month:"short",year:"numeric"}).format(new Date(`${value}T00:00:00`))}
+    function localDateTime(){const now=new Date(Date.now()-new Date().getTimezoneOffset()*60000);return now.toISOString().slice(0,16)}
+    async function apiRequest(path,options={}){
+      const headers={Accept:"application/json",...(options.body?{"Content-Type":"application/json"}:{})};
+      const apiToken=sessionStorage.getItem("makhillsApiToken");
+      if(apiToken)headers.Authorization=`Bearer ${apiToken}`;
+      let response;
+      try{response=await fetch(new URL(path,apiOrigin),{...options,headers})}
+      catch(error){setApiStatus("الخادم غير متصل",false);throw new Error(`تعذر الاتصال بالخادم: ${error.message}`)}
+      setApiStatus("متصل بالخادم",true);
+      let data;
+      try{data=await response.json()}
+      catch{throw new Error("استجابة الخادم ليست JSON صالحًا")}
+      if(!data||typeof data!=="object")throw new Error("استجابة الخادم بصيغة JSON غير متوقعة")
+      if(!response.ok){const error=new Error(data.error||`خطأ ${response.status}`);error.status=response.status;if(response.status===401){setApiStatus("أدخل رمز API للاتصال",false);openApiAuthModal()}throw error}
+      return data;
+    }
+    function setApiStatus(message,online){const status=document.getElementById("apiStatus");if(!status)return;status.textContent=message;status.classList.toggle("online",online);status.classList.toggle("offline",!online)}
+    function openApiAuthModal(){const modal=document.getElementById("apiAuthBackdrop");modal.classList.add("open");document.getElementById("apiAuthToken").focus()}
+    function requireConnection(){return true}
+    function populateEmployeeSelects(){
+      const activeOptions=employees.filter(person=>person.active).map(person=>`<option value="${escapeHtml(person.id)}">${escapeHtml(person.name)}</option>`).join("");
+      const reportOptions=employees.map(person=>`<option value="${escapeHtml(person.id)}">${escapeHtml(person.name)}</option>`).join("");
+      for(const id of ["attendanceEmployee","manualEmployee","adjustmentEmployee","outageEmployee"]){const select=document.getElementById(id);const previous=select.value;const first=id==="attendanceEmployee"||id==="outageEmployee"?'<option value="">كل الموظفين</option>':id==="adjustmentEmployee"?'<option value="">اختر موظفًا</option>':"";select.innerHTML=first+(id==="attendanceEmployee"?reportOptions:activeOptions);if([...select.options].some(option=>option.value===previous))select.value=previous}
+    }
+    async function refreshEmployees(){
+      if(!requireConnection())return;
+      try{const [data,performance]=await Promise.all([apiRequest("/api/v1/employees"),apiRequest(`/api/v1/performance?month=${encodeURIComponent(document.getElementById("performanceMonth").value)}`)]);employees=data.employees;performanceEmployees=performance.employees;if(performance.month===document.getElementById("dashboardDateFilter").value.slice(0,7))dashboardPerformanceReport=performance;populateEmployeeSelects();renderEmployees();refreshDashboardKpis()}
+      catch(error){throw error}
+    }
+    async function refreshPerformance(){
+      const report=await apiRequest(`/api/v1/performance?month=${encodeURIComponent(document.getElementById("performanceMonth").value)}`);
+      performanceEmployees=report.employees;if(report.month===document.getElementById("dashboardDateFilter").value.slice(0,7))dashboardPerformanceReport=report;renderEmployees();refreshDashboardKpis();
+    }
+    function renderEmployees(){
+      const query=searchInput.value.trim().toLocaleLowerCase("ar");
+      const selected=statusFilter.value;
+      const active=employees.filter(person=>person.active);
+      const ranks=new Map(performanceEmployees.map(item=>[item.id,item]));
+      const filtered=employees.filter(person=>`${person.name} ${person.position} ${person.department} ${person.attendance_user_id||""}`.toLocaleLowerCase("ar").includes(query)&&(selected==="all"||(selected==="نشط"&&person.active)||(selected==="غير نشط"&&!person.active))).sort((left,right)=>(ranks.get(left.id)?.rank??Number.MAX_SAFE_INTEGER)-(ranks.get(right.id)?.rank??Number.MAX_SAFE_INTEGER));
+      rows.innerHTML=filtered.map((person,index)=>{
+        const colors=[["#e8eee2","#506344"],["#e8eafa","#505c91"],["#fae9df","#9a5d36"],["#e4f0ed","#356d60"]][index%4];
+        const review=ranks.get(person.id);
+        const shift=person.shift_start&&person.shift_end?`${escapeHtml(person.shift_start)}–${escapeHtml(person.shift_end)} (${person.shift_hours} س)`:"غير مضبوط";
+        const action=person.active?`<button class="icon-btn delete" type="button" data-action="deactivate" data-id="${escapeHtml(person.id)}" aria-label="تعطيل ${escapeHtml(person.name)}" title="تعطيل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M6 7l1 14h10l1-14M9 7V4h6v3m-5 5v4m4-4v4"/></svg></button>`:`<button class="small-btn" type="button" data-action="activate" data-id="${escapeHtml(person.id)}">إعادة تفعيل</button>`;
+        return `<tr><td><strong>${review?`#${review.rank} · ${escapeHtml(review.rating)}`:"غير مقيم"}</strong><div class="employee-email">${review?`${review.performance_score}% · حضور ${review.attendance_rate}% · انضباط ${review.punctuality_score===null?"-":`${review.punctuality_score}%`}`:""}</div></td><td><div class="employee"><div class="employee-avatar" style="--avatar-bg:${colors[0]};--avatar-ink:${colors[1]}">${escapeHtml(initials(person.name))}</div><div><div class="employee-name">${escapeHtml(person.name)}</div><div class="employee-email">رقم البصمة: ${escapeHtml(person.attendance_user_id||"غير مربوط")}</div></div></div></td><td class="role-text">${escapeHtml(person.position)}</td><td>${escapeHtml(person.department)}</td><td class="muted-text">${dateLabel(person.start_date)}</td><td class="muted-text">${person.end_date?dateLabel(person.end_date):"مستمر"}</td><td>${formatMoney(person.base_monthly_salary)}</td><td>${formatMoney(person.hourly_wage)} / ساعة</td><td>${shift}</td><td>${escapeHtml(person.attendance_user_id||"-")}</td><td><span class="status status-${person.active?"active":"inactive"}">${person.active?"نشط":"غير نشط"}</span></td><td><div class="actions"><button class="icon-btn" type="button" data-action="edit" data-id="${escapeHtml(person.id)}" aria-label="تعديل ${escapeHtml(person.name)}" title="تعديل"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m14 5 5 5M4 20l11-11a2.1 2.1 0 0 0-3-3l-11 11L4 20Z"/></svg></button>${action}</div></td></tr>`;
+      }).join("");
+      rows.querySelectorAll("tr").forEach((row,index)=>{
+        const review=ranks.get(filtered[index].id);
+        if(!review?.score_available){
+          row.cells[0].querySelector("strong").textContent="غير مقيم";
+          row.cells[0].querySelector(".employee-email").textContent=review?"لا توجد أيام عمل فعلية مؤكدة":"";
+        }
+        const button=document.createElement("button");
+        button.type="button";button.className="small-btn";button.dataset.action="ranking-details";button.dataset.id=filtered[index].id;
+        button.textContent="تفاصيل الترتيب";
+        row.cells[0].append(button);
+      });
+      rows.querySelectorAll(".employee-name").forEach((container,index)=>{
+        const button=document.createElement("button");
+        button.type="button";button.className="employee-name-button";
+        button.dataset.action="details";button.dataset.id=filtered[index].id;
+        button.textContent=filtered[index].name;container.replaceChildren(button);
+      });
+      document.getElementById("emptyState").style.display=filtered.length?"none":"block";document.getElementById("resultCount").textContent=`عرض ${filtered.length} من ${employees.length} موظف`;
+      document.getElementById("totalCount").textContent=active.length;
+      document.getElementById("footer").textContent=`آخر تحديث: ${new Intl.DateTimeFormat("ar-EG",{day:"numeric",month:"long",year:"numeric"}).format(new Date())}`;
+    }
+    async function refreshDashboardKpis(){
+      const active=employees.filter(person=>person.active);
+      const selectedMonth=document.getElementById("dashboardDateFilter").value.slice(0,7);
+      const report=dashboardPerformanceReport?.month===selectedMonth?dashboardPerformanceReport:null;
+      if(!report)return;
+      const reports=report.employees.filter(item=>active.some(person=>person.id===item.id));
+      const presentDays=reports.reduce((total,report)=>total+report.days_present,0);
+      const averagePresentDays=reports.length?presentDays/reports.length:0;
+      const attendanceRate=report.workdays_in_month?Math.min(100,Math.round((averagePresentDays/report.workdays_in_month)*100)):0;
+      document.getElementById("totalCount").textContent=active.length;
+      document.getElementById("attendanceRate").textContent=`${attendanceRate}%`;
+      document.getElementById("attendanceKpiNote").textContent=`متوسط ${averagePresentDays.toFixed(1)} من ${report.workdays_in_month} يوم عمل لكل موظف`;
+    }
+    function updateEmployeeSalaryPreview(){
+      const monthly=Number(document.getElementById("employeeBaseSalary").value)||0;
+      const hours=Number(document.getElementById("employeeDays").value)||0;
+      const restDay=Number(document.getElementById("employeeRestDay").value);
+      const [year,month]=today.slice(0,7).split("-").map(Number);
+      const daysInMonth=new Date(year,month,0).getDate();
+      let scheduledDays=0;
+      for(let day=1;day<=daysInMonth;day++)if(new Date(year,month-1,day).getDay()!==((restDay+1)%7))scheduledDays++;
+      const hourly=document.getElementById("employeeSalary");
+      const dailyField=document.getElementById("employeeDailyRate");
+      hourly.readOnly=monthly>0;
+      if(monthly>0&&scheduledDays&&hours){const daily=monthly/scheduledDays;dailyField.value=daily.toFixed(2);hourly.value=(daily/hours).toFixed(2)}
+      else{const daily=(Number(hourly.value)||0)*hours;dailyField.value=daily.toFixed(2)}
+    }
+    function openEmployeeModal(person){employeeForm.reset();document.getElementById("employeeSaveNotice").textContent="";document.getElementById("employeeId").value=person?.id||"";document.getElementById("modalTitle").textContent=person?"تعديل بيانات الموظف":"إضافة موظف جديد";document.getElementById("employeeDate").value=person?.start_date||today;document.getElementById("employeeStartDateVerified").checked=person?.start_date_verified??true;document.getElementById("employeeEndDate").value=person?.end_date||"";document.getElementById("employeeBirthDate").value=person?.birth_date||"";document.getElementById("employeeDisability").checked=!!person?.disability;document.getElementById("employeeSalary").value=person?.hourly_wage??0;document.getElementById("employeeBaseSalary").value=person?.base_monthly_salary??0;document.getElementById("employeeDays").value=person?.shift_hours??8;document.getElementById("employeeShiftStart").value=person?.shift_start||"12:00";document.getElementById("employeeShiftEnd").value=person?.shift_end||"20:00";document.getElementById("employeeRestDay").value=person?.weekly_rest_day??4;document.getElementById("employeeAttendanceId").value=person?.attendance_user_id||"";if(person){document.getElementById("employeeName").value=person.name;document.getElementById("employeeRole").value=person.position;document.getElementById("employeeDepartment").value=person.department;document.getElementById("employeeStatus").value=person.active?"نشط":"غير نشط"}updateEmployeeSalaryPreview();employeeModal.classList.add("open")}
+    function closeEmployeeModal(){employeeModal.classList.remove("open")}
+    async function openEmployeeSummary(person){
+      if(!requireConnection())return;
+      try{
+        summaryEmployeeId=person.id;
+        const selectedMonth=document.getElementById("performanceMonth").value;
+        const summary=await apiRequest(`/api/employees/${encodeURIComponent(person.id)}/summary?month=${encodeURIComponent(selectedMonth)}`);
+        const monthlyReview=performanceEmployees.find(item=>item.id===person.id);
+        const ranking=monthlyReview?.ranking_breakdown;
+        const hasRankingScore=Boolean(monthlyReview?.score_available&&ranking?.score_available);
+        document.getElementById("rankingPosition").textContent=hasRankingScore?`#${monthlyReview.rank} · ${monthlyReview.performance_score}%`:"غير مصنف في هذا الشهر";
+        document.getElementById("rankingFormula").textContent=hasRankingScore?`المعادلة: ${ranking.formula}`:"لا توجد أيام عمل فعلية مؤكدة كافية لإصدار درجة أو ترتيب؛ الشفتات المفترضة لا تدخل في التقييم.";
+        const rankingRows=hasRankingScore?[
+          ["الحضور الفعلي",`${ranking.attendance.present_days} / ${ranking.attendance.verified_workdays} يوم × 100 × 60% = ${ranking.attendance.points.toFixed(2)} نقطة`],
+          ["الانضباط",ranking.punctuality.used_attendance_fallback?`لا توجد أيام انضباط مؤهلة؛ استُخدمت نسبة الحضور ${ranking.punctuality.score_percent}% × 40% = ${ranking.punctuality.points.toFixed(2)} نقطة`:`${ranking.punctuality.on_time_days} / ${ranking.punctuality.eligible_days} يوم × 100 × 40% = ${ranking.punctuality.points.toFixed(2)} نقطة`],
+          ["الإجازة المدفوعة",`${ranking.approved_leave_days} يوم، خارج الحضور والغياب ومقام التقييم`],
+          ["الشفتات المفترضة",`${ranking.assumed_full_shift_days_excluded} يوم، مستبعد من الحضور ومقام التقييم`],
+          ["الغياب",`${ranking.absence_days} يوم`],
+          ["الانضباط بالدقائق",`${ranking.punctuality.late_minutes} دقيقة تأخير`],
+          ["الموظف المثالي",ranking.ideal_criteria_met?"مستوفٍ للشروط":"غير مستوفٍ للشروط"],
+        ]:[];
+        document.getElementById("rankingDetailRows").innerHTML=rankingRows.map(([label,value])=>`<div><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join("");
+        document.getElementById("rankingTieBreakers").innerHTML=hasRankingScore?ranking.tie_breakers.map(item=>`<li>${escapeHtml(item)}</li>`).join(""):"";
+        document.getElementById("employeeSummaryTitle").textContent=person.name;
+        document.getElementById("employeeSummaryPeriod").textContent=`التقرير الشهري ${selectedMonth} · الفترة ${summary.period.start} حتى ${summary.period.end}`;
+        document.getElementById("summaryEntitlement").textContent=formatMoney(summary.pay.current_entitlement);
+        document.getElementById("summaryAttendanceRate").textContent=summary.attendance.verified_workdays?`${summary.attendance.attendance_rate}%`:"لا توجد أيام مؤكدة";
+        document.getElementById("summaryPunctuality").textContent=summary.attendance.punctuality_score===null?"لا توجد بصمات كافية":`${summary.attendance.punctuality_score}%`;
+        document.getElementById("summaryPerformanceScore").textContent=summary.attendance.performance_score===null?"غير متاح":`${summary.attendance.performance_score}%`;
+        document.getElementById("summaryRating").textContent=monthlyReview?.rating||"غير مقيم";
+        document.getElementById("summaryDaysPresent").textContent=summary.attendance.days_present;
+        document.getElementById("summaryAssumedDays").textContent=summary.attendance.assumed_full_shift_days;
+        document.getElementById("summaryWorkdays").textContent=summary.attendance.workdays_elapsed;
+        document.getElementById("summaryAbsence").textContent=summary.attendance.absence_days;
+        document.getElementById("summaryLateMinutes").textContent=summary.attendance.late_minutes;
+        document.getElementById("summaryMonthlySalary").textContent=formatMoney(summary.pay.monthly_salary);
+        document.getElementById("summaryRates").textContent=`${formatMoney(summary.pay.daily_rate)} / ${formatMoney(summary.pay.hourly_rate)}`;
+        document.getElementById("summaryAbsenceDeduction").textContent=formatMoney(summary.pay.absence_deduction);
+        document.getElementById("summaryPermissionDeduction").textContent=formatMoney(summary.pay.unpaid_permission_deduction);
+        const leaves=summary.leaves;
+        document.getElementById("summaryLeaveYear").textContent=leaves.year;
+        document.getElementById("leaveAnnualEntitlement").textContent=`${leaves.annual_entitlement} يوم`;
+        document.getElementById("leaveAnnualUsed").textContent=`${leaves.annual_used} سنوي + ${leaves.casual_used} عارضة`;
+        document.getElementById("leaveAnnualRemaining").textContent=`${leaves.annual_remaining} يوم`;
+        document.getElementById("leaveCasualBalance").textContent=`${leaves.casual_used} / 7 · المتبقي ${leaves.casual_remaining}`;
+        document.getElementById("leaveSickUsed").textContent=`${leaves.sick_used} يوم · وفق التقارير الطبية`;
+        document.getElementById("summaryLeaveRows").innerHTML=leaves.records.length?leaves.records.map(item=>`<tr><td>${item.leave_type==="annual"?"سنوية":item.leave_type==="casual"?"عارضة":"مرضية"}</td><td dir="ltr">${escapeHtml(item.start_date)} – ${escapeHtml(item.end_date)}</td><td>${item.days}</td><td>${escapeHtml(item.medical_report_reference||item.note||"-")}</td></tr>`).join(""):'<tr><td colspan="4" class="empty-cell">لا توجد إجازات مسجلة لهذا العام.</td></tr>';
+        document.getElementById("leaveStartDate").value=`${selectedMonth}-01`;
+        document.getElementById("leaveEndDate").value=`${selectedMonth}-01`;
+        document.getElementById("leaveType").value="annual";
+        document.getElementById("medicalReportReference").value="";
+        document.getElementById("medicalReportReference").required=false;
+        document.getElementById("medicalReferenceField").hidden=true;
+        document.getElementById("leaveNote").value="";
+        document.getElementById("leaveNotice").textContent="";
+        const allowance=summary.attendance.permission_allowance;
+        renderMonthlyAllowance(allowance);
+        document.getElementById("summaryPermissionRows").innerHTML=allowance.records.length?allowance.records.map(item=>`<tr><td dir="ltr">${escapeHtml(item.date)} ${escapeHtml(item.time)}</td><td>${item.type==="late"?"تأخير":item.type==="early"?"انصراف مبكر":"إذن"}</td><td>${item.minutes} دقيقة</td><td>${item.paid?"مدفوع":"غير مدفوع"}</td><td>${escapeHtml(item.note||"-")}</td></tr>`).join(""):'<tr><td colspan="5" class="empty-cell">لا توجد أذونات مسجلة.</td></tr>';
+        document.getElementById("summaryDeductionRows").innerHTML=summary.pay.deduction_reasons.length?summary.pay.deduction_reasons.map(item=>`<tr><td dir="ltr">${escapeHtml(item.period)}</td><td>${escapeHtml(item.label)}</td><td>${formatMoney(item.amount)}</td></tr>`).join(""):'<tr><td colspan="3" class="empty-cell">لا توجد خصميات مسجلة.</td></tr>';
+        employeeSummaryBackdrop.classList.add("open");
+      }catch(error){showError(error)}
+    }
+    function renderMonthlyAllowance(allowance){
+      document.getElementById("summaryAllowancePeriod").textContent=allowance.period;
+      document.getElementById("summaryAllowanceUsed").textContent=`${allowance.minutes_used} / ${allowance.allowance_minutes} دقيقة بقرار يدوي`;
+      document.getElementById("summaryAllowanceRemaining").textContent=`المتبقي ${allowance.minutes_remaining} دقيقة`;
+      document.getElementById("summaryAllowanceProgress").value=Math.min(allowance.minutes_used,allowance.allowance_minutes);
+      document.getElementById("allowanceRemainingInput").value=allowance.minutes_remaining;
+      document.getElementById("allowanceDecisionNote").value=allowance.manual_note||"";
+      document.getElementById("summaryAllowanceRows").innerHTML=allowance.monthly_history.length?allowance.monthly_history.map(item=>`<tr><td dir="ltr">${escapeHtml(item.period)}</td><td>${item.late_minutes}</td><td>${item.unpaid_permission_minutes}</td><td>${item.minutes_used} / 120</td><td>${item.minutes_remaining}</td></tr>`).join(""):'<tr><td colspan="5" class="empty-cell">لا توجد بيانات لهذا الشهر.</td></tr>';
+    }
+    function showView(name){document.querySelectorAll(".view-panel").forEach(panel=>panel.classList.toggle("active",panel.id===`${name}View`));document.querySelectorAll(".nav-item[data-view]").forEach(button=>{const active=button.dataset.view===name;button.classList.toggle("active",active);if(active)button.setAttribute("aria-current","page");else button.removeAttribute("aria-current")});const labels={employees:"الموظفون",attendance:"الحضور والانصراف",septemberArchive:"أرشيف سبتمبر 2026",policy:"لائحة الحضور والانضباط",payroll:"الرواتب الشهرية"};document.getElementById("crumb").textContent=`${labels[name]} · MAK HILLS GROUP`;if(name==="attendance")loadAttendance().catch(showError);if(name==="septemberArchive")loadSeptemberArchive();if(name==="payroll")loadPayroll().catch(showPayrollError)}
+    function showError(error){if(error?.status===401)setApiStatus("الخادم يرفض هذا الاتصال",false);const notice=document.getElementById("attendanceNotice");if(notice){notice.textContent=error?.message||"تعذر تحميل البيانات حالياً.";notice.hidden=false}}
+    function showPayrollError(error){const notice=document.getElementById("payrollNotice");notice.textContent=error?.message||"تعذر تحميل التقرير. تحقق من اتصال الشبكة وصلاحية الحساب.";notice.classList.add("error-notice")}
+    function payrollNotice(message,error=false){const notice=document.getElementById("payrollNotice");notice.textContent=message;notice.classList.toggle("error-notice",error)}
+    document.querySelectorAll(".nav-item[data-view]").forEach(button=>button.addEventListener("click",()=>showView(button.dataset.view)));
+    document.getElementById("printPolicyBtn").addEventListener("click",()=>{document.body.classList.add("printing-policy");window.addEventListener("afterprint",()=>document.body.classList.remove("printing-policy"),{once:true});window.print()});
+    document.querySelector('[data-view="policy"]').addEventListener("click",()=>Promise.all([loadHolidays(),loadOutages()]).catch(showError));
+    document.getElementById("holidayForm").addEventListener("submit",async event=>{event.preventDefault();const notice=document.getElementById("holidayNotice");notice.hidden=true;try{await apiRequest("/api/v1/holidays",{method:"POST",body:JSON.stringify({date:document.getElementById("holidayDate").value,name:document.getElementById("holidayName").value.trim()})})}catch(error){notice.classList.add("error-notice");notice.textContent=error.message||"تعذر تسجيل العطلة.";notice.hidden=false;return}event.target.reset();try{await loadHolidays();notice.classList.remove("error-notice");notice.textContent="تم تسجيل العطلة وإبطال مسودة الرواتب المتأثرة."}catch(error){notice.classList.add("error-notice");notice.textContent=`تم تسجيل العطلة، لكن تعذر تحديث القائمة: ${error.message||"أعد تحميل القائمة."}`}notice.hidden=false});
+    document.getElementById("holidayRows").addEventListener("click",async event=>{const button=event.target.closest("button[data-delete-holiday]");if(!button)return;const holidayDate=button.dataset.deleteHoliday;if(!confirm(`حذف عطلة ${holidayDate}؟`))return;try{await apiRequest(`/api/v1/holidays/${encodeURIComponent(holidayDate)}`,{method:"DELETE"});await loadHolidays()}catch(error){showError(error)}});
+    document.getElementById("outageForm").addEventListener("submit",async event=>{event.preventDefault();const notice=document.getElementById("outageNotice");notice.hidden=true;try{await apiRequest("/api/v1/attendance/outages",{method:"POST",body:JSON.stringify({start_date:document.getElementById("outageStartDate").value,end_date:document.getElementById("outageEndDate").value,employee_id:document.getElementById("outageEmployee").value||null,note:document.getElementById("outageLabel").value.trim()})})}catch(error){notice.classList.add("error-notice");notice.textContent=error.message||"تعذر تسجيل التوقف.";notice.hidden=false;return}event.target.reset();try{await loadOutages();notice.classList.remove("error-notice");notice.textContent="تم تسجيل التوقف وإبطال مسودات الرواتب المتأثرة."}catch(error){notice.classList.add("error-notice");notice.textContent=`تم تسجيل التوقف، لكن تعذر تحديث القائمة: ${error.message||"أعد تحميل القائمة."}`}notice.hidden=false});
+    document.getElementById("outageRows").addEventListener("click",async event=>{const button=event.target.closest("button[data-delete-outage]");if(!button)return;const outageId=button.dataset.deleteOutage;if(!confirm("حذف فترة التوقف؟"))return;try{await apiRequest(`/api/v1/attendance/outages/${encodeURIComponent(outageId)}`,{method:"DELETE"});await loadOutages()}catch(error){showError(error)}});
+    document.getElementById("addBtn").addEventListener("click",()=>{if(requireConnection())openEmployeeModal()});
+    document.getElementById("connectButton").addEventListener("click",()=>refreshEmployees().then(loadAttendance).catch(showError));
+    document.getElementById("apiAuthForm").addEventListener("submit",async event=>{
+      event.preventDefault();
+      const token=document.getElementById("apiAuthToken").value.trim();
+      const notice=document.getElementById("apiAuthError");
+      notice.hidden=true;
+      try{
+        const response=await fetch(new URL("/api/v1/employees",apiOrigin),{headers:{Accept:"application/json",Authorization:`Bearer ${token}`}});
+        const data=await response.json();
+        if(!response.ok)throw new Error(data.error||"رمز API غير صحيح");
+        sessionStorage.setItem("makhillsApiToken",token);
+        document.getElementById("apiAuthToken").value="";
+        document.getElementById("apiAuthBackdrop").classList.remove("open");
+        await Promise.all([refreshEmployees(),loadAttendance(),loadDashboardData()]);
+      }catch(error){notice.textContent=error.message||"تعذر الاتصال بالنظام.";notice.hidden=false}
+    });
+    document.getElementById("closeBtn").addEventListener("click",closeEmployeeModal);document.getElementById("cancelBtn").addEventListener("click",closeEmployeeModal);
+    employeeModal.addEventListener("click",event=>{if(event.target===employeeModal)closeEmployeeModal()});
+    document.getElementById("closeEmployeeSummaryBtn").addEventListener("click",()=>employeeSummaryBackdrop.classList.remove("open"));
+    employeeSummaryBackdrop.addEventListener("click",event=>{if(event.target===employeeSummaryBackdrop)employeeSummaryBackdrop.classList.remove("open")});
+    document.getElementById("closeAttendanceBtn").addEventListener("click",()=>attendanceModal.classList.remove("open"));document.getElementById("cancelAttendanceBtn").addEventListener("click",()=>attendanceModal.classList.remove("open"));
+    attendanceModal.addEventListener("click",event=>{if(event.target===attendanceModal)attendanceModal.classList.remove("open")});
+    document.addEventListener("keydown",event=>{if(event.key==="Escape"){closeEmployeeModal();employeeSummaryBackdrop.classList.remove("open");attendanceModal.classList.remove("open")}});
+    searchInput.addEventListener("input",renderEmployees);statusFilter.addEventListener("change",renderEmployees);
+    document.getElementById("performanceMonth").addEventListener("change",()=>refreshPerformance().catch(showError));
+    document.getElementById("leaveType").addEventListener("change",event=>{const sick=event.target.value==="sick";document.getElementById("medicalReferenceField").hidden=!sick;document.getElementById("medicalReportReference").required=sick});
+    document.getElementById("leaveForm").addEventListener("submit",async event=>{
+      event.preventDefault();
+      const notice=document.getElementById("leaveNotice");notice.textContent="";
+      const payload={leave_type:document.getElementById("leaveType").value,start_date:document.getElementById("leaveStartDate").value,end_date:document.getElementById("leaveEndDate").value,note:document.getElementById("leaveNote").value.trim(),medical_report_reference:document.getElementById("medicalReportReference").value.trim()};
+      try{await apiRequest(`/api/v1/employees/${encodeURIComponent(summaryEmployeeId)}/leaves`,{method:"POST",body:JSON.stringify(payload)});}
+      catch(error){notice.textContent=error.message||"تعذر تسجيل الإجازة.";return}
+      notice.textContent="تم تسجيل الإجازة.";
+      await openEmployeeSummary(employees.find(person=>person.id===summaryEmployeeId));
+    });
+    rows.addEventListener("click",async event=>{const button=event.target.closest("button[data-action]");if(!button)return;const person=employees.find(item=>item.id===button.dataset.id);if(!person)return;if(button.dataset.action==="details"||button.dataset.action==="ranking-details"){await openEmployeeSummary(person);return}if(button.dataset.action==="edit"){openEmployeeModal(person);return}try{if(button.dataset.action==="activate"){await apiRequest(`/api/v1/employees/${encodeURIComponent(person.id)}`,{method:"PATCH",body:JSON.stringify({active:true})})}else if(confirm(`تعطيل حساب ${person.name}؟ ستبقى سجلاته التاريخية محفوظة.`)){await apiRequest(`/api/v1/employees/${encodeURIComponent(person.id)}`,{method:"DELETE"})}await refreshEmployees()}catch(error){showError(error)}});
+    employeeForm.addEventListener("submit",async event=>{
+      event.preventDefault();
+      if(!requireConnection())return;
+      const id=document.getElementById("employeeId").value;
+      const person={
+        name:document.getElementById("employeeName").value.trim(),
+        position:document.getElementById("employeeRole").value.trim(),
+        department:document.getElementById("employeeDepartment").value.trim(),
+        start_date:document.getElementById("employeeDate").value,
+        start_date_verified:document.getElementById("employeeStartDateVerified").checked,
+        end_date:document.getElementById("employeeEndDate").value||(document.getElementById("employeeStatus").value==="نشط"?null:today),
+        birth_date:document.getElementById("employeeBirthDate").value||null,
+        disability:document.getElementById("employeeDisability").checked,
+        base_monthly_salary:Number(document.getElementById("employeeBaseSalary").value),
+        hourly_wage:Number(document.getElementById("employeeSalary").value),
+        shift_hours:Number(document.getElementById("employeeDays").value),
+        weekly_rest_day:Number(document.getElementById("employeeRestDay").value),
+        shift_start:document.getElementById("employeeShiftStart").value||null,
+        shift_end:document.getElementById("employeeShiftEnd").value||null,
+        attendance_user_id:document.getElementById("employeeAttendanceId").value.trim()||null,
+        active:document.getElementById("employeeStatus").value==="نشط"
+      };
+      const notice=document.getElementById("employeeSaveNotice");notice.textContent="";
+      try{await apiRequest(id?`/api/v1/employees/${encodeURIComponent(id)}`:"/api/v1/employees",{method:id?"PATCH":"POST",body:JSON.stringify(person)})}
+      catch(error){notice.textContent=error.message||"تعذر حفظ بيانات الموظف.";return}
+      closeEmployeeModal();
+      try{await refreshEmployees()}
+      catch(error){showError(new Error(`تم حفظ بيانات الموظف، لكن تعذر تحديث القائمة: ${error.message||"أعد تحميل القائمة."}`))}
+    });
+    for(const id of ["employeeBaseSalary","employeeDays","employeeRestDay"]){document.getElementById(id).addEventListener("input",updateEmployeeSalaryPreview);document.getElementById(id).addEventListener("change",updateEmployeeSalaryPreview)}
+    document.getElementById("employeeSalary").addEventListener("input",updateEmployeeSalaryPreview);
+
+    function formatAttendanceDuration(log){
+      if(log.leave_conflict)return "تداخل مع إجازة مسجلة";
+      if(log.employment_conflict)return "قبل تاريخ بدء العمل";
+      if(log.work_duration_seconds!==null&&log.work_duration_seconds!==undefined){const totalSeconds=Number(log.work_duration_seconds);const hours=Math.floor(totalSeconds/3600);const minutes=Math.floor((totalSeconds%3600)/60);const seconds=totalSeconds%60;return `${hours} س ${minutes} د ${seconds} ث`}
+      return Number(log.duration_minutes)>0?`${Number(log.duration_minutes)} دقيقة`:"-";
+    }
+    function findAttendanceLog(id){return [...attendanceLogs,...monthlyAbsenceLogs,...dashboardAttendanceLogs].find(log=>String(log.id)===String(id))}
+    function openAttendanceEditor(log,mode="all"){
+      configureAttendanceModal(mode,log.status);
+      document.getElementById("manualAttendanceId").value=log.id;
+      document.getElementById("manualEmployee").value=log.employee_id;
+      document.getElementById("manualTime").value=log.check_time.slice(0,16);
+      document.getElementById("manualDuration").value=Number(log.duration_minutes)||0;
+      document.getElementById("manualDuration").disabled=!["PERMISSION","OVERTIME_APPROVED"].includes(log.status);
+      document.getElementById("manualPermissionType").value=log.permission_type||"late";
+      document.getElementById("manualPermissionPaid").checked=Boolean(log.permission_paid);
+      updateManualPermissionFields();
+      document.getElementById("manualNote").value=log.note||"";
+      document.getElementById("attendanceModalTitle").textContent="تعديل حركة الحضور";
+      attendanceModal.classList.add("open");
+    }
+    function openNewAttendanceEditor(employeeId,workDate,mode="checkin"){
+      const form=document.getElementById("attendanceForm");
+      form.reset();
+      document.getElementById("manualAttendanceId").value="";
+      document.getElementById("manualEmployee").value=employeeId;
+      const employee=employees.find(person=>person.id===employeeId);
+      const isCheckout=mode==="checkout";
+      const defaultTime=isCheckout?(employee?.shift_end||"20:00"):(employee?.shift_start||"12:00");
+      document.getElementById("manualTime").value=`${workDate}T${defaultTime}`;
+      document.getElementById("manualDuration").value="0";
+      document.getElementById("manualDuration").disabled=true;
+      configureAttendanceModal(mode,isCheckout?"OUT":"IN");
+      document.getElementById("attendanceModalTitle").textContent=isCheckout?"تسجيل حركة انصراف":"تسجيل حركة حضور";
+      attendanceModal.classList.add("open");
+    }
+    function attendanceRowActions(row,mode="all"){
+      if(row.status==="paid_leave")return "-";
+      const logs=row.punches||[];
+      const checkinStatuses=new Set(["IN","LATE_IN","LATE_IN_UNEXCUSED","FIELD_IN","CHECK_IN","CHECKIN","ENTRY","ARRIVAL","حضور"]);
+      const checkoutStatuses=new Set(["OUT","EARLY_OUT","EXIT_PERMISSION","FIELD_OUT","CHECK_OUT","CHECKOUT","EXIT","DEPARTURE","انصراف"]);
+      const relevant=mode==="checkin"?logs.filter(log=>checkinStatuses.has(String(log.status).toUpperCase())):mode==="checkout"?logs.filter(log=>checkoutStatuses.has(String(log.status).toUpperCase())):logs;
+      const grouped=actions=>`<span class="attendance-actions">${actions}</span>`;
+      if(relevant.length)return grouped(relevant.map(log=>`<button class="small-btn" type="button" data-edit-attendance="${log.id}" data-attendance-mode="${mode}">تعديل</button><button class="small-btn" type="button" data-delete-attendance="${log.id}">حذف</button>`).join(""));
+      const absenceLog=logs.find(log=>["ABSENCE_UNEXCUSED","ABSENCE_EXCUSED"].includes(String(log.status).toUpperCase()));
+      if(mode==="checkin"&&absenceLog)return grouped(`<button class="small-btn" type="button" data-edit-attendance="${absenceLog.id}" data-attendance-mode="checkin">تعديل</button>`);
+      if(mode==="all"&&logs.length)return grouped(logs.map(log=>`<button class="small-btn" type="button" data-edit-attendance="${log.id}" data-attendance-mode="all">تعديل</button><button class="small-btn" type="button" data-delete-attendance="${log.id}">حذف</button>`).join(""));
+      if(mode==="all"&&["absence","excused_absence"].includes(row.status))return grouped(`<button class="small-btn" type="button" data-add-attendance="${escapeHtml(row.employee_id)}" data-work-date="${escapeHtml(row.date)}" data-attendance-mode="checkin">تعديل</button>`);
+      if(["checkin","checkout"].includes(mode))return grouped(`<button class="small-btn" type="button" data-add-attendance="${escapeHtml(row.employee_id)}" data-work-date="${escapeHtml(row.date)}" data-attendance-mode="${mode}">إضافة</button>`);
+      return "-";
+    }
+    function attendanceRowStatus(row,mode){
+      const labels={LATE_IN:"حضور متأخر",LATE_IN_UNEXCUSED:"تأخير بدون عذر",EARLY_OUT:"انصراف مبكر",EXIT_PERMISSION:"إذن انصراف",FIELD_IN:"حضور ميداني",FIELD_OUT:"انصراف ميداني",IN:"حضور",OUT:"انصراف طبيعي"};
+      const statuses=mode==="checkin"?new Set(["IN","LATE_IN","LATE_IN_UNEXCUSED","FIELD_IN","CHECK_IN","CHECKIN","ENTRY","ARRIVAL","حضور"]):new Set(["OUT","EARLY_OUT","EXIT_PERMISSION","FIELD_OUT","CHECK_OUT","CHECKOUT","EXIT","DEPARTURE","انصراف"]);
+      const log=(row.punches||[]).find(item=>statuses.has(String(item.status).toUpperCase()));
+      return log?labels[String(log.status).toUpperCase()]||String(log.status):({present:"حاضر",continuous_day:"يوم مستمر",incomplete_day:"بصمة ناقصة",partial:"بصمة ناقصة",absence:"غائب",excused_absence:"غياب بعذر",paid_leave:"إجازة مدفوعة",approved_leave:"إجازة مدفوعة",permission:"إذن",rest_day:"راحة أسبوعية",holiday:"عطلة رسمية"}[row.status]||row.status);
+    }
+    async function handleAttendanceTableAction(event){
+      const addButton=event.target.closest("button[data-add-attendance]");
+      if(addButton){event.stopPropagation();openNewAttendanceEditor(addButton.dataset.addAttendance,addButton.dataset.workDate,addButton.dataset.attendanceMode);return}
+      const editButton=event.target.closest("button[data-edit-attendance]");
+      if(editButton){event.stopPropagation();const log=findAttendanceLog(editButton.dataset.editAttendance);if(log)openAttendanceEditor(log,editButton.dataset.attendanceMode);return}
+      const deleteButton=event.target.closest("button[data-delete-attendance]");
+      if(!deleteButton)return;
+      event.stopPropagation();
+      const id=deleteButton.dataset.deleteAttendance;
+      const log=findAttendanceLog(id);
+      if(!id||!confirm(`حذف سجل ${log?.name||"الحضور"} بتاريخ ${log?.check_time?.slice(0,10)||""}؟`))return;
+      try{
+        await apiRequest(`/api/v1/attendance/${encodeURIComponent(id)}`,{method:"DELETE"});
+        await Promise.all([loadAttendance(),loadMonthlyAbsences(),loadDashboardData()]);
+      }catch(error){showError(error)}
+    }
+    async function loadAttendance(){
+      if(!requireConnection())return;
+      const selectedDay=document.getElementById("attendanceDay").value||today;
+      const data=await apiRequest(`/api/v1/attendance/day?date=${encodeURIComponent(selectedDay)}`);
+      const selectedEmployee=document.getElementById("attendanceEmployee").value;
+      const dailyRows=data.employees.filter(row=>!selectedEmployee||row.employee_id===selectedEmployee);
+      attendanceLogs=dailyRows.flatMap(row=>row.punches||[]);
+      document.getElementById("attendancePrintDate").textContent=`${selectedDay} · ${data.weekday}`;
+      const labels={rest_day:"راحة أسبوعية",holiday:"عطلة رسمية",paid_leave:"إجازة مدفوعة",approved_leave:"إجازة مدفوعة",present:"حاضر",continuous_day:"يوم مستمر",partial:"بصمة ناقصة",absence:"غائب",excused_absence:"غياب بعذر",permission:"إذن",assumed_full_shift:"شفت مفترض",incomplete_day:"بصمة ناقصة"};
+      const renderDaily=(timeField,mode)=>dailyRows.map(row=>`<tr><td>${escapeHtml(row.name)}</td><td>${escapeHtml(attendanceRowStatus(row,mode))}</td><td class="time-value">${escapeHtml(row[timeField]||"-")}</td><td>${Number(row.late_minutes||0)}</td><td>${Number(row.overtime_minutes||0)}</td><td>${escapeHtml(row.reason||"-")}</td><td>${attendanceRowActions(row,mode)}</td></tr>`).join("")||'<tr><td colspan="7" class="empty-cell">لا يوجد موظفون في هذا التاريخ.</td></tr>';
+      document.getElementById("checkinRows").innerHTML=renderDaily("check_in","checkin");
+      document.getElementById("checkoutRows").innerHTML=renderDaily("check_out","checkout");
+      const reportRows=dailyRows.filter(row=>!(["rest_day","holiday"].includes(row.status))||row.check_in||row.check_out);
+      const reportStatus=row=>row.status==="paid_leave"?"إجازة مدفوعة":(["absence","excused_absence"].includes(row.status)?"غياب":row.status==="continuous_day"?"يوم مستمر":row.status==="incomplete_day"?"بصمة ناقصة":(row.late_minutes>0?"متأخر":"منتظم"));
+      document.getElementById("attendanceReportRows").innerHTML=reportRows.length?reportRows.map(row=>`<tr><td>${escapeHtml(row.name)}</td><td dir="ltr">${escapeHtml(row.date)}</td><td dir="ltr">${escapeHtml(row.check_in||"-")}</td><td dir="ltr">${escapeHtml(row.check_out||"-")}</td><td>${Number(row.late_minutes||0)}</td><td>${Number(row.overtime_minutes||0)}</td><td>${Number(row.actual_work_hours||0).toFixed(2)} ساعة</td><td>${reportStatus(row)}</td></tr>`).join(""):'<tr><td colspan="8" class="empty-cell">لا توجد بيانات دوام مجدولة لهذا التاريخ.</td></tr>';
+      document.getElementById("attendanceCount").textContent=`${dailyRows.length} موظف · ${selectedDay}`;
+      await refreshDashboardKpis();
+      document.getElementById("attendanceNotice").hidden=true;
+    }
+    async function loadMonthlyAbsences(){
+      const month=document.getElementById("absenceMonth").value||today.slice(0,7);
+      const data=await apiRequest(`/api/v1/attendance/absences?month=${encodeURIComponent(month)}`);
+      monthlyAbsenceLogs=data.absences.flatMap(row=>row.punches||[]);
+      document.getElementById("absenceSummary").textContent=`${data.summary.unexcused_days} غياب بدون إذن · ${data.summary.excused_days} بعذر`;
+      document.getElementById("absencePrintPeriod").textContent=`${month} · ${data.workdays_in_month} يوم عمل بالتقويم العام · ${data.summary.unexcused_days} بدون عذر · ${data.summary.excused_days} بعذر`;
+      document.getElementById("absenceRows").innerHTML=data.absences.length?data.absences.map(row=>`<tr><td>${escapeHtml(row.name)}</td><td dir="ltr">${escapeHtml(row.date)} · ${escapeHtml(row.weekday)}</td><td>${row.status==="excused_absence"?"غياب بعذر":"غائب"}</td><td>${escapeHtml(row.absence_reason||row.reason)}</td><td>${attendanceRowActions(row,"absence")}</td></tr>`).join(""):'<tr><td colspan="5" class="empty-cell">لا توجد أيام غياب مسجلة لهذا الشهر.</td></tr>';
+      return data;
+    }
+    function renderSeptemberDailyArchive(){
+      if(!septemberArchiveData)return;
+      const selectedEmployee=document.getElementById("septemberEmployeeFilter").value;
+      const records=septemberArchiveData.daily_records.filter(row=>!selectedEmployee||row.employee_id===selectedEmployee);
+      const statusLabels={present:"حاضر",continuous_day:"يوم مستمر",incomplete_day:"بصمة ناقصة",partial:"بصمة ناقصة",absence:"غائب",excused_absence:"غياب بعذر",paid_leave:"إجازة مدفوعة",permission:"إذن",holiday:"عطلة رسمية",rest_day:"راحة أسبوعية"};
+      document.getElementById("septemberDailyCount").textContent=`${records.length} سجل يومي · قراءة فقط`;
+      document.getElementById("septemberDailyRows").innerHTML=records.length?records.map(row=>`<tr><td>${escapeHtml(row.name)}</td><td dir="ltr">${escapeHtml(row.date)}</td><td>${escapeHtml(row.weekday)}</td><td>${escapeHtml(statusLabels[row.status]||row.status)}</td><td dir="ltr">${escapeHtml(row.check_in||"-")}</td><td dir="ltr">${escapeHtml(row.check_out||"-")}</td><td>${Number(row.late_minutes||0)}</td><td>${Number(row.overtime_minutes||0)}</td><td>${Number(row.actual_work_hours||0).toFixed(2)}</td><td>${escapeHtml(row.reason||"-")}</td></tr>`).join(""):'<tr><td colspan="10" class="empty-cell">لا توجد سجلات مطابقة.</td></tr>';
+    }
+    async function loadSeptemberArchive(){
+      if(!requireConnection())return;
+      try{
+        const archive=await apiRequest("/api/v1/attendance/archive/2026-09");
+        septemberArchiveData=archive;
+        document.getElementById("septemberArchiveCreated").textContent=archive.archived_at||"محفوظ";
+        document.getElementById("septemberAttendanceDays").textContent=archive.summary.attendance_days.toLocaleString("ar-EG");
+        document.getElem
+        entById("septemberAbsenceDays").textContent=archive.summary.absence_days.toLocaleString("ar-EG");
+        document.getElementById("septemberAbsenceNote").textContent=`${archive.summary.unexcused_absence_days} بدون عذر · ${archive.summary.excused_absence_days} بعذر`;
+        document.getElementById("septemberPaidLeaveDays").textContent=archive.summary.paid_leave_days.toLocaleString("ar-EG");
+        document.getElementById("septemberAverageAttendance").textContent=`${archive.summary.average_attendance_rate}%`;
+        document.getElementById("septemberArchiveWorkdays").textContent=`${archive.days_in_month} يوماً · ${archive.workdays_in_month} يوم عمل بالتقويم العام`;
+        document.getElementById("septemberEmployeeCount").textContent=`${archive.employees.length} موظف · إجمالي أيام الدوام المجدولة ${archive.summary.scheduled_employee_days}`;
+        document.getElementById("septemberEmployeeRows").innerHTML=archive.employees.length?archive.employees.map(item=>`<tr><td><strong>${escapeHtml(item.name)}</strong></td><td>${item.scheduled_days}</td><td>${item.present_days}</td><td>${item.absence_days+item.excused_absence_days}</td><td>${item.paid_leave_days}</td><td>${item.late_minutes}</td><td>${item.overtime_minutes}</td><td>${item.actual_work_hours.toFixed(2)}</td><td>${item.attendance_rate}%</td></tr>`).join(""):'<tr><td colspan="9" class="empty-cell">لا توجد بيانات موظفين محفوظة في الأرشيف.</td></tr>';
+        const employeeFilter=document.getElementById("septemberEmployeeFilter");
+        const previousEmployee=employeeFilter.value;
+        employeeFilter.innerHTML='<option value="">كل الموظفين</option>'+archive.employees.map(item=>`<option value="${escapeHtml(item.employee_id)}">${escapeHtml(item.name)}</option>`).join("");
+        if(archive.employees.some(item=>item.employee_id===previousEmployee))employeeFilter.value=previousEmployee;
+        renderSeptemberDailyArchive();
+        document.getElementById("septemberArchiveNotice").textContent=`نسخة قراءة فقط حُفظت في ${archive.archived_at||"الأرشيف"}. لا تتوفر إجراءات تعديل أو حذف.`;
+      }catch(error){
+        const notice=document.getElementById("septemberArchiveNotice");
+        notice.classList.add("error-notice");
+        notice.textContent=error?.message||"تعذر تحميل أرشيف سبتمبر.";
+      }
+    }
+    async function loadDashboardData(){
+      const selectedDay=document.getElementById("dashboardDateFilter").value||today;
+      const selectedMonth=selectedDay.slice(0,7);
+      const [dayReport,absenceReport,performanceReport]=await Promise.all([
+        apiRequest(`/api/v1/attendance/day?date=${encodeURIComponent(selectedDay)}`),
+        apiRequest(`/api/v1/attendance/absences?month=${encodeURIComponent(selectedMonth)}`),
+        apiRequest(`/api/v1/performance?month=${encodeURIComponent(selectedMonth)}`),
+      ]);
+      dashboardPerformanceReport=performanceReport;
+      refreshDashboardKpis();
+      dashboardAttendanceLogs=dayReport.employees.flatMap(row=>row.punches||[]);
+      const labels={rest_day:"راحة أسبوعية",holiday:"عطلة رسمية",paid_leave:"إجازة مدفوعة",approved_leave:"إجازة مدفوعة",present:"حاضر",continuous_day:"يوم مستمر",partial:"بصمة ناقصة",absence:"غائب",excused_absence:"غياب بعذر",permission:"إذن",assumed_full_shift:"شفت مفترض",incomplete_day:"بصمة ناقصة",employment_conflict:"قبل تاريخ بدء العمل"};
+      const tone={present:"present",continuous_day:"present",incomplete_day:"leave",absence:"absence",excused_absence:"absence",paid_leave:"paid-leave",approved_leave:"paid-leave"};
+      const specialShiftNames=new Set(["آية","رضوى","إسراء"]);
+      document.getElementById("dashboardDailyRows").innerHTML=dayReport.employees.map(row=>{const late=Number(row.late_minutes||0)>0;const special=specialShiftNames.has(row.name);const alerts=[late?`<span class="attendance-alert late-alert">متأخر ${Number(row.late_minutes)} د</span>`:"",special?'<span class="attendance-alert special-shift-alert">شفت خاص</span>':""].join("");return `<tr class="${late?"attendance-row-late ":""}${special?"attendance-row-special":""}"><td>${escapeHtml(row.name)}</td><td><span class="attendance-state ${tone[row.status]||""} ${late?"late":""}">${escapeHtml(labels[row.status]||row.status)}</span><div class="attendance-alerts">${alerts}</div></td><td dir="ltr">${escapeHtml(row.check_in||"-")}</td><td dir="ltr">${escapeHtml(row.check_out||"-")}</td><td>${Number(row.late_minutes||0)}</td><td>${Number(row.overtime_minutes||0)}</td><td>${escapeHtml(row.reason||"-")}</td><td>${attendanceRowActions(row,"all")}</td></tr>`}).join("")||'<tr><td class="empty-cell" colspan="8">لا يوجد موظفون مؤهلون في هذا التاريخ.</td></tr>';
+      document.getElementById("dashboardDailyCount").textContent=`${dayReport.employees.length} موظف · ${dayReport.weekday} ${selectedDay}`;
+      document.getElementById("presentTodayCount").textContent=Number(dayReport.present_employee_count||0);
+      document.getElementById("absentLateTodayCount").textContent=absenceReport.absences.length;
+      document.getElementById("absenceKpiNote").textContent=`${absenceReport.summary.unexcused_days} بدون إذن · ${absenceReport.summary.excused_days} بعذر`;
+    }
+    async function loadHolidays(){
+      const data=await apiRequest("/api/v1/holidays");
+      document.getElementById("holidayRows").innerHTML=data.holidays.length?data.holidays.map(item=>`<tr><td dir="ltr">${escapeHtml(item.holiday_date)}</td><td>${escapeHtml(item.name)}</td><td><button class="small-btn" type="button" data-delete-holiday="${escapeHtml(item.holiday_date)}">حذف</button></td></tr>`).join(""):'<tr><td colspan="3" class="empty-cell">لا توجد عطلات رسمية مسجلة.</td></tr>';
+    }
+    async function loadOutages(){
+      const data=await apiRequest("/api/v1/attendance/outages");
+      document.getElementById("outageRows").innerHTML=data.outages.length?data.outages.map(item=>`<tr><td dir="ltr">${escapeHtml(item.start_date)}</td><td dir="ltr">${escapeHtml(item.end_date)}</td><td>${escapeHtml(item.employee_name||"كل الموظفين")}</td><td>${escapeHtml(item.device_label)}</td><td><button class="small-btn" type="button" data-delete-outage="${item.id}">حذف</button></td></tr>`).join(""):'<tr><td colspan="5" class="empty-cell">لا توجد فترات توقف مسجلة.</td></tr>';
+    }
+    document.getElementById("attendanceDay").addEventListener("change",()=>loadAttendance().catch(showError));
+    document.getElementById("dashboardDateFilter").addEventListener("change",()=>loadDashboardData().catch(showError));
+    document.getElementById("attendanceEmployee").addEventListener("change",()=>loadAttendance().catch(showError));
+    document.getElementById("absenceMonth").addEventListener("change",()=>loadMonthlyAbsences().catch(showError));
+    document.getElementById("refreshAttendanceBtn").addEventListener("click",()=>loadAttendance().catch(showError));
+    document.getElementById("openSeptemberArchiveBtn").addEventListener("click",()=>showView("septemberArchive"));
+    document.getElementById("septemberEmployeeFilter").addEventListener("change",renderSeptemberDailyArchive);
+    document.getElementById("printSeptemberArchiveBtn").addEventListener("click",async()=>{if(!requireConnection())return;await loadSeptemberArchive();if(!septemberArchiveData)return;document.body.classList.add("printing-september-archive");window.addEventListener("afterprint",()=>document.body.classList.remove("printing-september-archive"),{once:true});window.print()});
+    document.getElementById("printAttendanceReportBtn").addEventListener("click",async()=>{if(!requireConnection())return;try{await loadAttendance();document.body.classList.add("printing-attendance-report");window.addEventListener("afterprint",()=>document.body.classList.remove("printing-attendance-report"),{once:true});window.print()}catch(error){showError(error)}});
+    monthlyAbsencePrintButton.addEventListener("click",async()=>{if(!requireConnection())return;try{await loadMonthlyAbsences();document.body.classList.add("printing-monthly-attendance");window.addEventListener("afterprint",()=>document.body.classList.remove("printing-monthly-attendance"),{once:true});window.print()}catch(error){showError(error)}});
+    document.getElementById("showAbsenceReportBtn").addEventListener("click",()=>{
+      document.getElementById("absenceMonth").value=document.getElementById("dashboardDateFilter").value.slice(0,7);
+      showView("attendance");
+      document.getElementById("absenceTab").click();
+    });
+    document.getElementById("dashboardDailyRows").addEventListener("click",handleAttendanceTableAction);
+    document.querySelectorAll(".attendance-tab").forEach(button=>button.addEventListener("click",()=>{
+      document.querySelectorAll(".attendance-tab").forEach(tab=>{const active=tab===button;tab.classList.toggle("active",active);tab.setAttribute("aria-selected",String(active))});
+      document.querySelectorAll(".attendance-panel").forEach(panel=>{const active=panel.id===`${button.dataset.attendanceTab}Panel`;panel.hidden=!active;panel.classList.toggle("active",active)});
+      if(button.dataset.attendanceTab==="absence")loadMonthlyAbsences().catch(showError);
+    }));
+    document.getElementById("addAttendanceBtn").addEventListener("click",()=>{if(!requireConnection())return;const form=document.getElementById("attendanceForm");form.reset();document.getElementById("manualAttendanceId").value="";const mode=document.querySelector(".attendance-tab.active")?.dataset.attendanceTab||"all";const status=mode==="checkin"?"IN":mode==="checkout"?"OUT":"IN";configureAttendanceModal(mode,status);document.getElementById("attendanceModalTitle").textContent=mode==="checkin"?"إضافة حركة حضور":mode==="checkout"?"إضافة حركة انصراف":"إضافة حركة يدوية";document.getElementById("manualTime").value=`${today}T${localDateTime().slice(11,16)}`;document.getElementById("manualDuration").disabled=true;attendanceModal.classList.add("open")});
+    document.getElementById("manualStatus").addEventListener("change",event=>{const duration=document.getElementById("manualDuration");duration.disabled=!["PERMISSION","OVERTIME_APPROVED"].includes(event.target.value);if(duration.disabled)duration.value="0";updateManualPermissionFields()});
+    document.getElementById("attendanceView").addEventListener("click",handleAttendanceTableAction);
+    allowanceAdminForm.addEventListener("submit",async event=>{
+      event.preventDefault();
+      if(!requireConnection()||!summaryEmployeeId)return;
+      const notice=document.getElementById("allowanceUpdateNotice");
+      notice.textContent="جارٍ حفظ القرار...";
+      try{
+        const period=document.getElementById("performanceMonth").value;
+        await apiRequest(`/api/v1/permission-allowance/${encodeURIComponent(summaryEmployeeId)}`,{method:"PUT",body:JSON.stringify({period,remaining_minutes:Number(document.getElementById("allowanceRemainingInput").value),note:document.getElementById("allowanceDecisionNote").value})});
+        const summary=await apiRequest(`/api/employees/${encodeURIComponent(summaryEmployeeId)}/summary?month=${encodeURIComponent(period)}`);
+        renderMonthlyAllowance(summary.attendance.permission_allowance);
+        notice.textContent="تم حفظ الرصيد بقرار إداري.";
+      }catch(error){notice.textContent=error?.message||"تعذر حفظ الرصيد."}
+    });
+    document.getElementById("attendanceForm").addEventListener("submit",async event=>{
+      event.preventDefault();
+      const id=document.getElementById("manualAttendanceId").value;
+      const payload={employee_id:document.getElementById("manualEmployee").value,check_time:document.getElementById("manualTime").value,status:document.getElementById("manualStatus").value,duration_minutes:Number(document.getElementById("manualDuration").value)||0,permission_type:document.getElementById("manualPermissionType").value,permission_paid:document.getElementById("manualPermissionPaid").checked,note:document.getElementById("manualNote").value.trim()};
+      try{
+        await apiRequest(id?`/api/v1/attendance/${encodeURIComponent(id)}`:"/api/v1/attendance/manual",{method:id?"PUT":"POST",body:JSON.stringify(payload)});
+      }catch(error){
+        const notice=document.getElementById("attendanceNotice");
+        notice.textContent=`تعذر حفظ الحركة: ${error.message||"تحقق من البيانات والاتصال بالخادم."}`;
+        notice.hidden=false;
+        return;
+      }
+      attendanceModal.classList.remove("open");
+      event.target.reset();
+      document.getElementById("manualAttendanceId").value="";
+      document.getElementById("manualDuration").disabled=true;
+      updateManualPermissionFields();
+      try{await Promise.all([loadAttendance(),loadMonthlyAbsences(),loadDashboardData()])}
+      catch(error){
+        const notice=document.getElementById("attendanceNotice");
+        notice.textContent=`تم حفظ الحركة، لكن تعذر تحديث السجل: ${error.message||"أعد تحميل القائمة."}`;
+        notice.hidden=false;
+      }
+    });
+
+    async function loadPayroll(){
+      if(!requireConnection())return;
+      const month=document.getElementById("payrollMonth").value;
+      if(!month)return;
+      document.getElementById("printPeriod").textContent=month;
+      const data=await apiRequest(`/api/v1/payroll?month=${encodeURIComponent(month)}`);
+      const records=data.payroll;
+      const compensationComplete=records.every(row=>row.compensation_configured);
+      const sum=field=>records.reduce((total,row)=>total+(Number(row[field])||0),0);
+      const total=field=>compensationComplete?formatMoney(sum(field)):"غير مكتمل";
+      document.getElementById("totalBase").textContent=total("base_pay");
+      document.getElementById("totalOvertime").textContent=total("overtime_pay");
+      document.getElementById("totalDeductions").textContent=compensationComplete?formatMoney(sum("late_deduction")+sum("absence_deduction")+sum("other_deductions")+sum("permission_deductions")):"غير مكتمل";
+      document.getElementById("totalNet").textContent=total("net_pay");
+      document.getElementById("payrollRows").innerHTML=records.length?records.map(row=>{
+        const reasons=row.deduction_reasons||[];
+        const amount=value=>row.compensation_configured?formatMoney(value):"غير مكتمل";
+        const breakdown=reasons.length?`<ul class="deduction-reasons">${reasons.map(reason=>`<li>${escapeHtml(reason.label)}: ${formatMoney(reason.amount)}</li>`).join("")}</ul>`:"لا توجد خصميات";
+        const deductions=row.compensation_configured?formatMoney((Number(row.absence_deduction)||0)+(Number(row.other_deductions)||0)+(Number(row.permission_deductions)||0)+(Number(row.late_deduction)||0)):"غير مكتمل";
+        const status=row.status==="approved"?"معتمد":row.compensation_configured?"مسودة":"أجر غير مسجل";
+        return `<tr><td>${escapeHtml(row.name)}</td><td>${Number(row.regular_hours).toFixed(2)}</td><td>${Number(row.assumed_full_shift_days)||0}</td><td>${amount(row.base_pay)}</td><td>${row.late_minutes}</td><td>${amount(row.late_deduction)}</td><td>${Number(row.overtime_hours).toFixed(2)}</td><td>${amount(row.overtime_pay)}</td><td><strong>${deductions}</strong>${breakdown}</td><td><strong>${amount(row.net_pay)}</strong></td><td><span class="status-${row.status}">${status}</span></td></tr>`
+      }).join(""):'<tr><td colspan="11" class="empty-cell">لم يُحسب كشف هذا الشهر بعد.</td></tr>';
+      const missing=records.filter(row=>!row.compensation_configured).map(row=>row.name);
+      payrollNotice(missing.length?`الساعات محسوبة، لكن الأجر غير مسجل لـ: ${missing.join("، ")}. لا يمكن اعتماد الكشف حتى استكمال الأجور.`:data.approved?`الكشف معتمد بواسطة ${data.approved.approved_by} في ${data.approved.approved_at}. أي تغيير سيعيده لمسودة.`:"الراتب الأساسي الشهري + أجر الإضافي ×1.5 - الخصومات = الصافي.");
+    }
+    document.getElementById("payrollMonth").addEventListener("change",async()=>{try{await loadPayroll();await refreshDashboardKpis()}catch(error){showPayrollError(error)}});
+    document.getElementById("calculatePayrollBtn").addEventListener("click",async()=>{if(!requireConnection())return;const period=document.getElementById("payrollMonth").value;try{await apiRequest("/api/v1/payroll/calculate",{method:"POST",body:JSON.stringify({period})})}catch(error){showPayrollError(error);return}try{await loadPayroll();await refreshDashboardKpis()}catch(error){payrollNotice(`تم حفظ المسودة، لكن تعذر تحديث العرض: ${error.message||"أعد تحميل التقرير."}`,true)}});
+    document.getElementById("exportExcelBtn").addEventListener("click",async()=>{if(!requireConnection())return;const period=document.getElementById("payrollMonth").value;try{const headers={Accept:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"};const apiToken=sessionStorage.getItem("makhillsApiToken");if(apiToken)headers.Authorization=`Bearer ${apiToken}`;const response=await fetch(new URL(`/api/v1/payroll/export.xlsx?month=${encodeURIComponent(period)}`,apiOrigin),{headers});if(!response.ok){const error=await response.json().catch(()=>({error:"تعذر تصدير الملف"}));throw new Error(error.error||"تعذر تصدير الملف")}const file=await response.blob();const link=document.createElement("a");const url=URL.createObjectURL(file);link.href=url;link.download=`Mak-Hills-Payroll-${period}.xlsx`;link.click();URL.revokeObjectURL(url)}catch(error){showPayrollError(error)}});
+    document.getElementById("exportPdfBtn").addEventListener("click",async()=>{if(!requireConnection())return;try{await loadPayroll();window.print()}catch(error){showPayrollError(error)}});
+    document.getElementById("approvePayrollBtn").addEventListener("click",async()=>{if(!requireConnection())return;const approved_by=prompt("اسم المدير الذي يعتمد الكشف:","محمد مكي");if(!approved_by)return;try{await apiRequest("/api/v1/payroll/approve",{method:"POST",body:JSON.stringify({period:document.getElementById("payrollMonth").value,approved_by})})}catch(error){showPayrollError(error);return}try{await loadPayroll()}catch(error){payrollNotice(`تم اعتماد الكشف، لكن تعذر تحديث العرض: ${error.message||"أعد تحميل التقرير."}`,true)}});
+    document.getElementById("adjustmentForm").addEventListener("submit",async event=>{event.preventDefault();if(!requireConnection())return;try{await apiRequest("/api/v1/payroll/adjustments",{method:"POST",body:JSON.stringify({employee_id:document.getElementById("adjustmentEmployee").value,period:document.getElementById("payrollMonth").value,kind:document.getElementById("adjustmentKind").value,amount:Number(document.getElementById("adjustmentAmount").value),note:document.getElementById("adjustmentNote").value.trim()})})}catch(error){showPayrollError(error);return}event.target.reset();try{await loadPayroll();payrollNotice("أُضيف التعديل. أعد حساب المسودة لتحديث الصافي.")}catch(error){payrollNotice(`تم حفظ التعديل، لكن تعذر تحديث الكشف: ${error.message||"أعد تحميل التقرير."}`,true)}});
+    refreshEmployees().then(loadAttendance).then(loadDashboardData).catch(showError);
+
+  </script>
+</html>

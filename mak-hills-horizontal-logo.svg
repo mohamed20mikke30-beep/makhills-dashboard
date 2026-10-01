@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 120" role="img" aria-labelledby="title description">
+  <title id="title">MAK HILLS GROUP - Real Estate Development</title>
+  <desc id="description">Mak Hills Group real estate development logo</desc>
+  <rect width="620" height="120" fill="#0D1C30"/>
+  <g transform="translate(18 17) scale(1.8)" fill="none">
+    <path d="M5 4h7v19l12 7 12-7V4h7v23L24 38 5 27V4Z" fill="#D7B36A"/>
+    <path d="M16 4h7v12l-7-4V4Zm9 0h7v8l-7 4V4Z" fill="#F2DEAE"/>
+    <path d="M16 31v13h7V35l-7-4Zm9 4v9h7V31l-7 4Z" fill="#B38A43"/>
+  </g>
+  <text x="112" y="55" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="34" font-weight="700">MAK HILLS GROUP</text>
+  <path d="M112 72h476" stroke="#D7B36A" stroke-width="2"/>
+  <text x="112" y="98" fill="#E8ECF2" font-family="Arial, sans-serif" font-size="19" font-weight="400" letter-spacing="1">REAL ESTATE DEVELOPMENT</text>
+</svg>

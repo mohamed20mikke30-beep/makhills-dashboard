@@ -1,0 +1,4 @@
+pyzk==0.9
+requests==2.34.2
+pywebview>=5.4,<7
+python-dotenv>=1.0,<2
