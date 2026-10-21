@@ -10,6 +10,9 @@ import urllib.request
 from pathlib import Path
 
 import webview
+from dotenv import load_dotenv
+
+from backend.local_config import configured_api_token, load_or_create_api_token
 
 
 ROOT = Path(__file__).resolve().parent
@@ -44,6 +47,15 @@ def server_is_ready():
             return response.status == 200
     except (OSError, urllib.error.URLError):
         return False
+
+
+def server_has_password_login():
+    try:
+        with urllib.request.urlopen(SERVER_URL, timeout=3) as response:
+            page = response.read().decode("utf-8")
+    except (OSError, urllib.error.URLError):
+        return False
+    return 'id="login"' in page and 'id="employeesView"' not in page
 
 
 def wait_for_server(process):
@@ -85,6 +97,13 @@ def show_error(message):
 
 
 def main():
+    load_dotenv(ROOT / ".env", override=False)
+    if os.environ.get("MAKHILLS_API_TOKEN") in {
+        "replace-with-a-long-random-secret", "dev-only-change-me",
+    }:
+        os.environ.pop("MAKHILLS_API_TOKEN")
+    if not os.environ.get("MAKHILLS_API_TOKEN"):
+        configured_api_token()
     os.environ["MAKHILLS_HOST"] = HOST
     os.environ["MAKHILLS_PORT"] = str(PORT)
     os.environ["MAKHILLS_API_URL"] = SERVER_URL
@@ -95,9 +114,22 @@ def main():
     )
 
     try:
-        if not server_is_ready():
+        existing_server = server_is_ready()
+        if not existing_server and not os.environ.get("MAKHILLS_API_TOKEN"):
+            os.environ["MAKHILLS_API_TOKEN"] = load_or_create_api_token()
+        if existing_server and not os.environ.get("MAKHILLS_API_TOKEN"):
+            raise RuntimeError(
+                "The existing server's biometric API token is unavailable. "
+                "Stop the server and restart the desktop app, or set MAKHILLS_API_TOKEN in .env."
+            )
+        if not existing_server:
             server = start_process("backend/server.py")
             wait_for_server(server)
+        if not server_has_password_login():
+            raise RuntimeError(
+                "The local server does not have the password-protected login screen. "
+                "Stop the old server and restart the desktop app."
+            )
         start_process("bridge.py")
         window = webview.create_window(
             "Mak Hills | إدارة الموظفين",

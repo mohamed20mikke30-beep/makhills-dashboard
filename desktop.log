@@ -1,0 +1,50 @@
+2026-10-04 14:39:57,215 ERROR Desktop app failed
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\my-first-website\desktop.py", line 118, in main
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: The existing server's biometric API token is unavailable. Stop the server and restart the desktop app, or set MAKHILLS_API_TOKEN in .env.
+2026-10-04 14:40:03,409 ERROR Desktop app failed
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\my-first-website\desktop.py", line 118, in main
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: The existing server's biometric API token is unavailable. Stop the server and restart the desktop app, or set MAKHILLS_API_TOKEN in .env.
+2026-10-15 20:40:22,384 ERROR Desktop app failed
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\my-first-website\desktop.py", line 121, in main
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: The existing server's biometric API token is unavailable. Stop the server and restart the desktop app, or set MAKHILLS_API_TOKEN in .env.
+2026-10-15 20:40:27,493 ERROR Desktop app failed
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\my-first-website\desktop.py", line 121, in main
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: The existing server's biometric API token is unavailable. Stop the server and restart the desktop app, or set MAKHILLS_API_TOKEN in .env.
+2026-10-15 20:41:16,944 ERROR Desktop app failed
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\my-first-website\desktop.py", line 121, in main
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: The existing server's biometric API token is unavailable. Stop the server and restart the desktop app, or set MAKHILLS_API_TOKEN in .env.
+2026-10-15 20:46:54,625 ERROR Desktop app failed
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\my-first-website\desktop.py", line 121, in main
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: The existing server's biometric API token is unavailable. Stop the server and restart the desktop app, or set MAKHILLS_API_TOKEN in .env.
+2026-10-15 20:47:48,792 ERROR Desktop app failed
+Traceback (most recent call last):
+  File "C:\Users\HP\Desktop\my-first-website\desktop.py", line 121, in main
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: The existing server's biometric API token is unavailable. Stop the server and restart the desktop app, or set MAKHILLS_API_TOKEN in .env.
+2026-10-18 17:37:37,754 WARNING Failed to delete user data folder: [WinError 5] Access is denied: 'C:\\Users\\HP\\AppData\\Local\\Temp\\tmprz97hzsw\\EBWebView\\BrowserMetrics\\BrowserMetrics-6AD4D26E-1BA0.pma'

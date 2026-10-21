@@ -17,7 +17,7 @@ DEVICE_PORT = int(os.environ.get("ZK_DEVICE_PORT", "4370"))
 DEVICE_PASSWORD = int(os.environ.get("ZK_DEVICE_PASSWORD", "0"))
 POLL_SECONDS = max(5, int(os.environ.get("ZK_POLL_SECONDS", "30")))
 API_URL = os.environ.get("MAKHILLS_API_URL", "http://127.0.0.1:8000").rstrip("/")
-API_TOKEN = os.environ.get("MAKHILLS_API_TOKEN", "dev-only-change-me")
+API_TOKEN = os.environ.get("MAKHILLS_API_TOKEN", "").strip()
 CHECK_IN_PUNCH = os.environ.get("ZK_CHECKIN_PUNCH", "0").strip()
 CHECK_OUT_PUNCH = os.environ.get("ZK_CHECKOUT_PUNCH", "1").strip()
 SYNC_FROM = date.fromisoformat(os.environ.get("ZK_SYNC_FROM", "2026-09-27"))
@@ -36,6 +36,43 @@ def punch_direction(punch):
     if value == CHECK_OUT_PUNCH:
         return "check_out"
     return None
+
+
+def inferred_punch_directions(attendance_rows):
+    grouped = {}
+    for attendance in attendance_rows:
+        timestamp = attendance.timestamp
+        if isinstance(timestamp, datetime):
+            key = (str(attendance.user_id).strip(), timestamp.date())
+            grouped.setdefault(key, []).append(attendance)
+
+    directions = {}
+    for records in grouped.values():
+        records.sort(key=lambda attendance: attendance.timestamp)
+        punch_codes = {punch_field(attendance.punch) for attendance in records}
+        if len(records) > 1 and punch_codes == {CHECK_IN_PUNCH}:
+            previous_time = None
+            previous_direction = None
+            for attendance in records:
+                direction = punch_direction(attendance.punch)
+                if direction is None:
+                    continue
+                timestamp = attendance.timestamp
+                if previous_time is not None:
+                    elapsed = (timestamp - previous_time).total_seconds()
+                    if elapsed < 60:
+                        direction = previous_direction
+                    else:
+                        direction = "check_out" if previous_direction == "check_in" else "check_in"
+                directions[id(attendance)] = direction
+                previous_time = timestamp
+                previous_direction = direction
+            continue
+
+        for attendance in records:
+            directions[id(attendance)] = punch_direction(attendance.punch)
+
+    return directions
 
 
 def event_key(attendance):
@@ -115,6 +152,7 @@ def send_events(session, attendance_rows, known_employee_ids, sent_events, dry_r
     pending_keys = []
     ignored_unknown_punches = set()
     ignored_unknown_employees = set()
+    directions = inferred_punch_directions(attendance_rows)
 
     for attendance in attendance_rows:
         try:
@@ -130,7 +168,7 @@ def send_events(session, attendance_rows, known_employee_ids, sent_events, dry_r
         if employee_id not in known_employee_ids:
             ignored_unknown_employees.add(employee_id)
             continue
-        direction = punch_direction(attendance.punch)
+        direction = directions.get(id(attendance))
         if direction is None:
             ignored_unknown_punches.add(punch_field(attendance.punch))
             continue
@@ -191,6 +229,11 @@ def parse_args():
 
 def main():
     args = parse_args()
+    if not API_TOKEN:
+        raise RuntimeError(
+            "MAKHILLS_API_TOKEN is required for the biometric bridge. "
+            "Set it in .env or start the server and bridge with start_all.ps1."
+        )
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     session = requests.Session()
     session.headers.update({"Authorization": f"Bearer {API_TOKEN}"})
