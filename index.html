@@ -700,6 +700,15 @@
     }
   </style>
   <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAJhJuyJ5GVKcCgTnrJWWq_mNb9EJsYogg",
+      authDomain: "mak-hills-portal.firebaseapp.com",
+      projectId: "mak-hills-portal",
+      storageBucket: "mak-hills-portal.firebasestorage.app",
+      messagingSenderId: "127929441899",
+      appId: "1:127929441899:web:e6341c688df10480c91b2e",
+      measurementId: "G-ZCC84C75J3"
+    };
     const apiOrigin=window.location.origin;
     window.addEventListener("error",event=>console.error("[attendance-ui] Uncaught browser error",event.message,event.filename,event.lineno,event.error));
     window.addEventListener("unhandledrejection",event=>console.error("[attendance-ui] Unhandled promise rejection",event.reason));
