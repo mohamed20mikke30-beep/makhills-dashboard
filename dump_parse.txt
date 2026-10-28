@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<html><head></head><body><div id="out">LOADED OK: undefined</div><script>
+window.onerror = function(msg, url, line, col, err){ document.getElementById('out').textContent = 'ERROR: '+msg+' @ line '+line+':'+col; return true; };
+</script><script src="extracted.js"></script><script>
+document.getElementById('out').textContent = 'LOADED OK: '+ (typeof window.__x);
+</script></body></html>

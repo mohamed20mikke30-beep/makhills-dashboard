@@ -1,0 +1,5 @@
+<!doctype html><html><body><div id="out">PENDING</div><script>
+window.onerror = function(m){ document.getElementById('out').textContent = 'ERROR: '+m; };
+try { eval("function x(){ if(true){ }"); document.getElementById('out').textContent='OK'; }
+catch(e){ document.getElementById('out').textContent = 'SYNTAX: '+e.message; }
+</script></body></html>
